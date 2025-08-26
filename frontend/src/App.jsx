@@ -2,6 +2,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/login/Login";
 import Register from "./components/register/Register";
 import Layout from "./layouts/Layout";
+import Dashboard from "./components/dashboard/Dashboard";
+import CodeEditor from "./components/codeEditor/CodeEditor";
+import Profile from "./components/profile/Profile";
 
 function App() {
   return (
@@ -11,7 +14,9 @@ function App() {
         <Route path="/register" element={Register} />
 
         <Route path="/dashboard" element={Layout}>
-          <Route index element/>        
+          <Route index element={Dashboard}/>
+          <Route path="" element={CodeEditor}/>
+          <Route path="" element={Profile}/>       
         </Route>
       </Routes>
     </Router>
