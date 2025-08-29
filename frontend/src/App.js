@@ -1,11 +1,10 @@
-
+import React from 'react';
+import Register from './register';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        Code Lab
-      </header>
+    <div>
+      <Register />
     </div>
   );
 }
