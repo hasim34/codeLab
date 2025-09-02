@@ -3,14 +3,14 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f5f5f5;
+  background-color: #000000; /* Changed to black */
 }
 
 .login-form {
-  background: white;
+  background: #ffffff;
   padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1); /* Slight white glow */
   width: 320px;
   text-align: center;
 }
@@ -19,6 +19,7 @@
   margin-bottom: 20px;
   font-size: 24px;
   font-weight: bold;
+  color: #ffffff; /* White text for visibility */
 }
 
 .login-input {
