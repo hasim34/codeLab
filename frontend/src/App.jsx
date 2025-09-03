@@ -10,13 +10,13 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={Login} />
-        <Route path="/register" element={Register} />
+        <Route path="/" element={<Login/>} />
+        <Route path="/register" element={<Register/>} />
 
-        <Route path="/dashboard" element={Layout}>
-          <Route index element={Dashboard}/>
-          <Route path="" element={CodeEditor}/>
-          <Route path="" element={Profile}/>       
+        <Route path="/dashboard" element={<Layout/>}>
+          <Route index element={<Dashboard/>}/>
+          <Route path="editor" element={<CodeEditor/>}/>
+          <Route path="profile" element={<Profile/>}/>       
         </Route>
       </Routes>
     </Router>
