@@ -191,15 +191,30 @@
 }
 
 .login-link {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 14px;
+    text-align: center;
+    margin-top: 25px;
+    font-size: 14px;
+    color: #a0a0a0;
 }
 
-.login-link a {
-  color: #6c63ff;
-  text-decoration: none;
-  font-weight: 500;
+.login-link a:hover {
+    background: linear-gradient(to right, #403ab0, #5a52d5);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(108, 99, 255, 0.4);
+}
+
+login-link a {
+    display: inline-block;
+    padding: 12px 25px;
+    background: linear-gradient(to right, #4a43c9, #6c63ff);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+    margin-top: 10px;
 }
 
 @media (max-width: 768px) {
@@ -215,4 +230,21 @@
   .right-panel {
     padding: 30px 20px;
   }
+}
+
+
+/* Make register screen full screen */
+.register-container {
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    max-width: 100%; 
+    margin: 0;
+    border-radius: 0; /* Remove rounded corners for full screen */
+}
+
+/* Optional: Ensure content is centered vertically */
+.register-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
