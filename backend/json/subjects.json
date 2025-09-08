@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "title": "Data Structures & Algorithms Lab",
+    "description": "Learn fundamental data structures and algorithms.",
+    "completed": 8,
+    "total": 15
+  },
+  {
+    "id": 2,
+    "title": "Database Management Lab",
+    "description": "Design and implement databases using SQL and NoSQL.",
+    "completed": 6,
+    "total": 12
+  }
+]

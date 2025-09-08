@@ -1,32 +1,25 @@
 import "./dashboard.css";
 import "./SubjectCard.jsx";
 import SubjectCard from "./SubjectCard.jsx";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function Dashboard() {
-  const subjects = [
-    {
-      id: 1,
-      title: "Data Structures & Algorithms Lab",
-      description: "Learn fundamental data structures and algorithms.",
-      completed: 8,
-      total: 15,
-    },
-    {
-      id: 2,
-      title: "Database Management Lab",
-      description: "Design and implement databases using SQL and NoSQL.",
-      completed: 6,
-      total: 12,
-    },
-  ];
+  const [subjects, setSubjects] = useState([]);
 
   const fetchSubject = async() => {
     try {
       const res = await axios.get(`${import.meta.env.VITE_API_URL}/subjects`);
+      setSubjects(res.data);
+      console.log(res.data);
     } catch (err) {
       console.error("Error fetching subjects: ",err);
     }
   };
+
+  useEffect( () => {
+    fetchSubject();
+  }, [])
 
   return (
     <div className="dashboard">
