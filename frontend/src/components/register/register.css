@@ -82,13 +82,12 @@
 
 .form-title {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .form-title h2 {
   font-size: 24px;
   color: #e0e0e0;
-  margin-bottom: 10px;
 }
 
 .form-title p {
@@ -97,13 +96,13 @@
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   position: relative;
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   font-weight: 500;
   color: #b8b8b8;
 }
@@ -121,7 +120,7 @@
 }
 
 .input-with-icon input {
-  width: 100%;
+  width: 90%;
   padding: 15px 15px 15px 45px;
   border: 2px solid #2a2a3e;
   border-radius: 8px;
