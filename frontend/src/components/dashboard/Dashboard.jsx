@@ -20,6 +20,14 @@ function Dashboard() {
     },
   ];
 
+  const fetchSubject = async() => {
+    try {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/subjects`);
+    } catch (err) {
+      console.error("Error fetching subjects: ",err);
+    }
+  };
+
   return (
     <div className="dashboard">
       <h2>Welcome back, Name! 👋</h2>
