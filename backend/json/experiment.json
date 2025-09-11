@@ -1,0 +1,7 @@
+[
+  { "id": 1, "subjectId": 1, "title": "Two Sum Problem", "level": "Easy", "progress": 100 },
+  { "id": 2, "subjectId": 1, "title": "Reverse Linked List", "level": "Medium", "progress": 60 },
+  { "id": 3, "subjectId": 2, "title": "Quick Sort", "level": "Medium", "progress": 40 },
+  { "id": 4, "subjectId": 3, "title": "Build a Portfolio Website", "level": "Easy", "progress": 20 },
+  { "id": 5, "subjectId": 3, "title": "Create a REST API", "level": "Medium", "progress": 0 }
+]
