@@ -25,7 +25,7 @@ body {
 .welcome-text {
   font-size: 24px;
   margin-bottom: 30px;
-  color: #2a06f7;
+  color: #4b2eeb;
 }
 
 .login-box {
@@ -40,7 +40,7 @@ body {
 .instruction {
   font-size: 14px;
   margin-bottom: 20px;
-  color: #2a06f7;
+  color: #4b2eeb;
 }
 
 input {
@@ -54,12 +54,12 @@ input {
 }
 
 input::placeholder {
-  color: #aaaaaa;
+  color: #f6f4f4;
 }
 
 .forgot-link {
   font-size: 13px;
-  color: #2a06f7;
+  color: #4b2eeb;
   text-decoration: none;
   display: block;
   margin-bottom: 20px;
@@ -68,7 +68,7 @@ input::placeholder {
 .signin-btn {
   width: 100%;
   padding: 12px;
-  background-color: #2a06f7;
+  background-color: #4b2eeb;
   color: #000;
   border: none;
   border-radius: 6px;
@@ -78,7 +78,7 @@ input::placeholder {
 }
 
 .signin-btn:hover {
-  background-color:#2a06f7;
+  background-color:#4b2eeb;
 }
 
 .signup-prompt {
@@ -87,7 +87,7 @@ input::placeholder {
 }
 
 .signup-prompt a {
-  color: #2a06f7;
+  color: #4b2eeb;
   text-decoration: none;
 }
 
@@ -111,6 +111,6 @@ input::placeholder {
 
 .caption {
   font-size: 16px;
-  color: #cccccc;
+  color: #0c0cc7;
   line-height: 1.5;
 }
