@@ -139,7 +139,7 @@ input {
 }
 
 .side-image {
-  width: 200px;
+  width: 300px;
   height: 200px;
   border-radius: 12px;
   object-fit: cover;
