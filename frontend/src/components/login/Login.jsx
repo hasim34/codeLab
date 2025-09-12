@@ -10,7 +10,7 @@ const Login = () => {
       <div className="login-left">
         <div className="logo">
           <span className="logo-icon">{"</>"}</span>
-          <h1>CodeLab</h1>
+          <h1 className="logo-text">CodeLab</h1>
         </div>
         <p className="welcome-text">Welcome back to your coding journey</p>
 
@@ -32,7 +32,7 @@ const Login = () => {
                 className="eye-icon"
                 onClick={() => setShowPassword(!showPassword)}
               >
-                {showPassword ? "🙈" : "👁️"}
+                {showPassword ? "" : ""}
               </span>
             </div>
 
@@ -51,7 +51,7 @@ const Login = () => {
       <div className="login-right">
         <img
           src="https://blog.zegocloud.com/wp-content/uploads/2023/02/coding-platform.jpg"
-          alt="Coding platform"
+          alt="Coding Platform"
           className="side-image"
         />
         <h3>Master Programming Skills</h3>
