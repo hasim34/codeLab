@@ -1,15 +1,17 @@
-/* Global Reset & Background */
 body {
-  margin: 0;
+  margin:0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #000000;           /* ✅ Black background */
+  background-color: #0d1117;
   color: white;
+  padding: 0px;
+  overflow: hidden;
+  height: 100%;
 }
 
 .register-container {
   display: flex;
   height: 100vh;
-  width: 100%;
+  overflow: hidden; 
 }
 
 /* Left Panel (Image + Text) */
@@ -20,69 +22,70 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #14084991;           /* ✅ Keep black for left too */
+  background: #1b2743fc;         
   text-align: center;
 }
 
 .register-left img.register-image {
-  width: 300px;
+  width: 400px;
   height: auto;
-  border-radius: 12px;
-  margin-bottom: 20px;
+  border-radius: 20px;
+  margin-bottom: 30px;
 }
 
 .register-left h2 {
   margin: 10px 0;
-  font-size: 22px;
+  font-size: 25px;
   font-weight: 600;
 }
 
 .register-left p {
+  font-size: 15px;
   color: #dcdcdc;
   max-width: 300px;
+  text-align:center ;
 }
 
 /* Right Panel (Form) */
 .register-right {
   flex: 1;
-  background-color: #000000;           /* ✅ Black background */
+  background: #121c35fc;
   display: flex;
   justify-content: center;
-  align-items: center;
-}
+  padding: 40px 0; 
+  overflow: visible; 
+  flex-direction: column; 
 
 /* Outer Card */
 .register-box {
-  background-color: #000000;
-  padding: 50px;
-  border-radius: 14px;
-  width: 100%;
-  max-width: 500px;
+  flex: 1;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-}
+  align-items: center;
+  padding: 40px;
+  background: #121c35fc;
 
+}
 
 /* Inner Box with Translucent White */
 .register-inner-box {
-  background-color: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(20px);
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 40px;
-  box-shadow: 0 4px 40px rgba(255, 255, 255, 0.05);
-}
-
-
-/* Header */
-.register-header {
-  text-align: center;
+  background:#2e3a4b ;
+  padding: 30px;
+  border-radius: 12px;
+  width: 350px;
+  max-height: 700px; 
+  box-shadow: 20px 20px 15px rgba(0, 0, 0, 0.2);
+  background: #2e3a4b;
   margin-bottom: 30px;
+  margin-top: 30px;
+  
 }
+
 
 .logo-img {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   margin-bottom: 8px;
 }
 
@@ -92,10 +95,14 @@ body {
   font-weight: bold;
 }
 
+.register-header {
+    margin-bottom: 10px;
+}
+
 .register-header p {
   margin-top: 4px;
   color: #b0b0b0;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 /* Form Fields */
@@ -127,10 +134,6 @@ body {
 
 .spaced-row {
   margin-bottom: 16px;
-}
-
-.form-row > div {
-  flex: 1;
 }
 
 /* Password Field */
@@ -217,13 +220,12 @@ body {
   margin-bottom: 20px; /* space after the row */
 }
 
-
 .form-inner-box {
-  background: rgba(255, 255, 255, 0.1); /* white with 10% opacity */
+  background: rgba(255, 255, 255, 0.1); 
   padding: 30px 40px;
   border-radius: 15px;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1); /* subtle glow */
-  backdrop-filter: blur(10px); /* optional, for frosted glass effect */
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1); 
+  backdrop-filter: blur(10px); 
 }
 
 /* Form Card Look */
@@ -231,8 +233,8 @@ body {
   background-color: rgba(255, 255, 255, 0.06); /* Keep translucent look */
   padding: 40px;
   border-radius: 16px;
-  width: 100%;
-  max-width: 480px;
+  width: 60%;
+  max-width: 400px;
   box-shadow: 0 4px 40px rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(20px); /* Frosted effect */
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -275,6 +277,40 @@ body {
   font-size: 13px;
   color: #b0b0b0;
 }
+
+
+
+
+
+
+
+
+.register-header {
+    text-align: center;
+    margin-bottom: 5px; /* Reduced from 30px */
+}
+
+.register-inner-box {
+    margin-top: 20; /* Remove any top margin */
+    padding: 20px 40px; /* Adjust padding */
+    
+}
+
+.register-header h1 {
+    margin-bottom: 0px; /* Reduced spacing */
+}
+
+.register-header p {
+    margin-bottom: 0px; /* Remove bottom margin */
+}
+
+.form-title {
+    margin-top: 0; 
+    padding-top: 0; 
+}
+
+
+
 
 
 
