@@ -3,7 +3,32 @@ import "./login.css";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+   const [rollNumber, setRollNumber] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
+  const validateForm = (e) => {
+    e.preventDefault();
+
+    // Roll number validation (only numbers)
+    const rollRegex = /^[0-9]+$/;
+    if (!rollRegex.test(rollNumber)) {
+      setError("Roll Number / Registration Number must be numbers only.");
+      return;
+    }
+
+    // Password validation (at least 8 chars, includes number & special char)
+    const passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/;
+    if (!passwordRegex.test(password)) {
+      setError(
+        "Password must be at least 8 characters long and include a number & special character."
+      );
+       return;
+    }
+
+    setError("");
+    alert("Successfully logged in. Let's get started");
+  };
   return (
     <div className="login-page">
       {/* Left Side */}
@@ -18,23 +43,31 @@ const Login = () => {
           <h2>Sign In</h2>
           <p className="subtext">Enter your credentials to access your account</p>
 
-          <form>
+          <form onSubmit={validateForm}>
             <label>Roll Number / Registration Number</label>
-            <input type="text" placeholder="Enter your roll number" />
+          <input
+            type="text"
+            placeholder="Enter your roll number"
+            value={rollNumber}
+            onChange={(e) => setRollNumber(e.target.value)}
+          />
 
-            <label>Password</label>
-            <div className="password-container">
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder="Enter your password"
-              />
+           <label>Password</label>
+          <input
+            type="password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          /> 
+          
               <span
                 className="eye-icon"
                 onClick={() => setShowPassword(!showPassword)}
               >
                 {showPassword ? "" : ""}
               </span>
-            </div>
+              {/* Error Message */}
+            {error && <p className="error">{error}</p>}
 
             <a href="#" className="forgot-link">Forgot password?</a>
 
