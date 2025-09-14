@@ -5,7 +5,7 @@ class Judge0Service {
         try{
             const data = { sourceCode: sourceCode, languageId: languageId, stdin: stdin || ''};
             const response = await axios.post(`${process.env.JUDGE0_API_URL}`, data,{
-                params: { base64_encoded: false, wait: true}
+                params: { base64_encoded: false, wait: true}, headers: {'Content-Type':'application/json'}
             });
 
             return response.data;

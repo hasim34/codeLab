@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./editor.css";
 import axios from "axios";
-import { getLanguageId } from "../utils/languages";
+import { getLanguageId } from "../../utils/languages";
+import {useLocation} from "react-router-dom";
 
 export default function CodeEditor() {
+  const location = useLocation();
+  const { subjectId, problemId} = location.state || {};
   const [language, setLanguage] = useState("Python");
   const [problemData, setProbelmData] = useState(null);
   const [code, setCode] = useState("");
   const [consoleOutput, setConsoleOutput] = useState("");
   const [testOutput, setTestOutput] = useState("");
+
   useEffect(() => {
     const fetchProblemDetails = async () => {
       if (!subjectId || !problemId) return;
@@ -23,6 +27,7 @@ export default function CodeEditor() {
         setCode(`#Write your ${language} code for: ${res.data.title}\n`);
       } catch (err) {
         console.error("Error fetching problem details: ", err);
+        setConsoleOutput("Error loading problem details");
       }
     };
     fetchProblemDetails();
@@ -112,25 +117,27 @@ export default function CodeEditor() {
     <div className="container">
       <div className="sidebar">
         <div className="problem-header">
-          <h2>Two Sum Problem</h2>
+          <h2>{problemData.title}</h2>
+          <span className="{`difficulty-badge ${problemData.difficulty}`}"> {problemData.difficulty} </span>
         </div>
         <div className="description">
           <h3>Description</h3>
-          <p>
-            Given an array of integers nums and an integer target, return
-            indices of the two numbers such that they add up to target...
-          </p>
+          <p>{problemData.description}</p>
 
-          <h4>Example 1:</h4>
-          <p>Input: nums = [2,7,11,15], target = 9</p>
-          <p>Output: [0,1]</p>
-
-          <h4>Example 2:</h4>
-          <p>Input: nums = [3,3], target = 6</p>
-          <p>Output: [0,1]</p>
+          {problemData.examples && problemData.examples.map( (example, index) => {
+            <div key={index}>
+              <h4>Example {index+1}</h4>
+              <p>Input {example.input}</p>
+              {example.target && <p>Target: {example.target}</p>}
+              <p>Output: {example.output}</p>
+              {example.explanation && <p>Explanation: {example.explanation}</p>}
+            </div>
+          })}
 
           <h4>Constraints:</h4>
-          <p>output should be two indices,target should be one number</p>
+          <ul> {problemData.constraints.map( (constraint, index) => {
+            <li key={index}>{constraint}</li>
+          })}</ul>
         </div>
       </div>
 
@@ -144,6 +151,8 @@ export default function CodeEditor() {
             <option value="Python">Python</option>
             <option value="C">C</option>
             <option value="C++">C++</option>
+            <option value="Java">Java</option>
+            <option value="JavaScript">JavaScript</option>
           </select>
           <div className="buttons-group">
             <button className="run-btn" onClick={handleRun}>
@@ -158,17 +167,19 @@ export default function CodeEditor() {
         <textarea
           id="code-editor"
           className="code-editor"
-          defaultValue={`# Write your ${language} code here\n`}
+          value={code}
+          onChange={ (e) => setCode(e.target.value)}
+          placeholder={`Write your ${language} code here...`}
         />
 
         <div className="outputs-container">
           <div className="console-output">
             <h4>Console Output</h4>
-            <textarea className="console-textarea" readOnly defaultValue={""} />
+            <textarea className="console-textarea" readOnly value={consoleOutput} />
           </div>
           <div className="testcase-output">
             <h4>Test Case Output</h4>
-            <textarea className="console-textarea" readOnly defaultValue={""} />
+            <textarea className="console-textarea" readOnly value={testOutput} />
           </div>
         </div>
       </div>

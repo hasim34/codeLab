@@ -3,7 +3,7 @@ const db = require('../config/db');
 const fs = require('fs');
 const path = require('path');
 
-const executionController = async(req, res) => {
+const getProblemData = async(req, res) => {
     try{
         const filePath = path.join(__dirname,'../json/testcases','subject${subjectId}','problem${problemId}.json');
 
@@ -18,13 +18,15 @@ const executionController = async(req, res) => {
     }
 }
 
-const codeController = async(req, res) => {
+const executeCode = async(req, res) => {
     try{
         const {sourceCode, languageId, problemId, subjectId} = req.body;
 
         if(!subjectId){
             return res.status(400).json({error: 'Subject ID is required'});
         }
+
+        const problemData = await this.getProblemData(problemId, subjectId);
 
     } catch(err){
         res.status(500).json({error: err.message});
