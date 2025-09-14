@@ -6,22 +6,29 @@ import Dashboard from "./components/dashboard/Dashboard";
 import Experiments from "./components/experiment/Experiments";
 import CodeEditor from "./components/codeEditor/CodeEditor";
 import Profile from "./components/profile/Profile";
+import { LoaderProvider } from "./context/LoaderContext";
+import "./context/loader.css";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Login/>} />
-        <Route path="/register" element={<Register/>} />
+    <LoaderProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
 
-        <Route path="/dashboard" element={<Layout/>}>
-          <Route index element={<Dashboard/>}/>
-          <Route path="subject/:id" element={<Experiments/>}/>
-          <Route path="subject/:id/editor/:experimentId" element={<CodeEditor/>}/>
-          <Route path="profile" element={<Profile/>}/>       
-        </Route>
-      </Routes>
-    </Router>
+          <Route path="/dashboard" element={<Layout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="subject/:id" element={<Experiments />} />
+            <Route
+              path="subject/:id/editor/:experimentId"
+              element={<CodeEditor />}
+            />
+            <Route path="profile" element={<Profile />} />
+          </Route>
+        </Routes>
+      </Router>
+    </LoaderProvider>
   );
 }
 

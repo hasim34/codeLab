@@ -1,8 +1,8 @@
-import React, { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 const LoaderContext = createContext();
 
-const useLoader = () => {
+export const useLoader = () => {
   const context = useContext(LoaderContext);
   if (!context) {
     throw new Error("useLoader must be used within a LoaderProvider");
@@ -10,7 +10,7 @@ const useLoader = () => {
   return context;
 };
 
-const LoaderProvider = ({ children }) => {
+export const LoaderProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
 
   const showLoader = () => setLoading(true);
@@ -32,4 +32,4 @@ const LoaderProvider = ({ children }) => {
   );
 };
 
-export default { useLoader, LoaderProvider };
+

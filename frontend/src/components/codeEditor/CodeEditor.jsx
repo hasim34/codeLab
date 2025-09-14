@@ -3,8 +3,10 @@ import "./editor.css";
 import axios from "axios";
 import { getLanguageId } from "../../utils/languages";
 import {useLocation} from "react-router-dom";
+import {useLoader} from "../../context/LoaderContext";
 
 export default function CodeEditor() {
+  const {loading, showLoader, hideLoader} = useLoader();
   const location = useLocation();
   const { subjectId, problemId} = location.state || {};
   const [language, setLanguage] = useState("Python");
@@ -38,6 +40,7 @@ export default function CodeEditor() {
       setConsoleOutput("Error: Subject ID or Problem ID missing");
       return;
     }
+    showLoader();
     setConsoleOutput("Running code...");
 
     try {
@@ -64,6 +67,8 @@ export default function CodeEditor() {
       setConsoleOutput(
         `Error: ${err.response?.data?.error || "Failed to execute code"}`
       );
+    } finally{
+      hideLoader();
     }
   };
 
@@ -72,6 +77,7 @@ export default function CodeEditor() {
       setTestOutput("Error: Subject ID or Problem Id missing!");
       return;
     }
+    showLoader();
     setTestOutput("Submitting solution...");
 
     try {
@@ -106,6 +112,8 @@ export default function CodeEditor() {
       setTestOutput(
         `Error: ${err.response?.data?.error || "Failed to submit solution"}`
       );
+    } finally{
+      hideLoader();
     }
   };
 

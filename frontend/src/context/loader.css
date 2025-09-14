@@ -1,0 +1,72 @@
+/* Base theme colors */
+:root {
+  --primary-dark-blue: #1a2a44; /* Deep dark blue base */
+  --secondary-blue: #2e4a6a; /* Lighter accent blue */
+  --accent-teal: #4da8da; /* Subtle teal for highlights */
+  --text-light: #e0e7f0; /* Light text for readability */
+  --shadow-soft: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Loader container */
+.global-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(26, 42, 68, 0.8); /* Semi-transparent overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Unique orbital loader animation */
+.loader-orbit {
+  width: 60px;
+  height: 60px;
+  position: relative;
+  animation: rotate 2s linear infinite;
+}
+
+.orbit-dot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: var(--accent-teal);
+  border-radius: 50%;
+  animation: orbit 1s ease-in-out infinite;
+}
+
+.orbit-dot:nth-child(1) {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  animation-delay: 0s;
+}
+
+.orbit-dot:nth-child(2) {
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  animation-delay: 0.3s;
+}
+
+.orbit-dot:nth-child(3) {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  animation-delay: 0.6s;
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes orbit {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(0.6); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+

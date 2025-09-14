@@ -29,4 +29,4 @@ const getProblemDetails = (req, res) => {
     }
 }
 
-module.exports = {getProblemDetails, getSubjectProblems};
+module.exports = {getProblemDetails, };
