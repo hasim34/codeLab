@@ -65,28 +65,13 @@ body {
   align-items: center;
   padding: 40px;
   background: #121c35fc;
-
-}
-
-/* Inner Box with Translucent White */
-.register-inner-box {
-  background:#2e3a4b ;
-  padding: 30px;
-  border-radius: 12px;
-  width: 350px;
-  max-height: 700px; 
-  box-shadow: 20px 20px 15px rgba(0, 0, 0, 0.2);
-  background: #2e3a4b;
-  margin-bottom: 30px;
-  margin-top: 30px;
-  
 }
 
 
 .logo-img {
   width: 40px;
   height: 40px;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .register-header h1 {
@@ -109,7 +94,7 @@ body {
 .register-form label {
   font-weight: 500;
   font-size: 14px;
-  margin-bottom: 4px;
+  margin-bottom: 5px;
   display: block;
 }
 
@@ -120,7 +105,7 @@ body {
 {
   width: 100%;
   padding: 10px;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
   border-radius: 6px;
   border: 1px solid #3b4a5a;
   background-color: #1a2533;
@@ -129,12 +114,10 @@ body {
 
 .form-row {
   display: flex;
-  gap: 12px;
+  gap: 20px;
 }
 
-.spaced-row {
-  margin-bottom: 16px;
-}
+
 
 /* Password Field */
 .password-field {
@@ -162,11 +145,11 @@ body {
 .checkbox-row {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  
 }
 
 .checkbox-row input {
-  margin-right: 8px;
+  margin-right: 5px;
 }
 
 .checkbox-row label {
@@ -199,7 +182,7 @@ body {
 .signin-text {
   text-align: center;
   font-size: 14px;
-  margin-top: 16px;
+  margin-top: 5px;
   color: #b0b0b0;
 }
 
@@ -213,28 +196,17 @@ body {
 }
 
 .form-row > div:last-child {
-  margin-right: 0; /* remove space after the last field */
+  margin-right: 10; /* remove space after the last field */
 }
 
-.spaced-row {
-  margin-bottom: 20px; /* space after the row */
-}
-
-.form-inner-box {
-  background: rgba(255, 255, 255, 0.1); 
-  padding: 30px 40px;
-  border-radius: 15px;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1); 
-  backdrop-filter: blur(10px); 
-}
 
 /* Form Card Look */
 .register-inner-box {
   background-color: rgba(255, 255, 255, 0.06); /* Keep translucent look */
-  padding: 40px;
+  padding: 2px;
   border-radius: 16px;
   width: 60%;
-  max-width: 400px;
+  max-width: 80vh;
   box-shadow: 0 4px 40px rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(20px); /* Frosted effect */
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -244,33 +216,33 @@ body {
 .form-title {
   font-size: 22px;
   font-weight: bold;
-  margin-bottom: 6px;
+  margin-bottom:0px;
   text-align: left;
 }
 
 .form-subtitle {
   font-size: 14px;
   color: #b0b0b0;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
   text-align: left;
 }
 
 /* Adjust the logo + header */
 .register-header {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 }
 
 .logo-img {
-  width: 48px;
-  height: 48px;
-  margin-bottom: 6px;
+  width: 40px;
+  height: 40px;
 }
 
 .main-title {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 4px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+  margin: 0;
 }
 
 .subheading {
@@ -278,11 +250,13 @@ body {
   color: #b0b0b0;
 }
 
-
-
-
-
-
+.logo-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* or use `start` for left alignment */
+  gap: 10px; /* space between logo and title */
+  margin-bottom: 4px;
+}
 
 
 .register-header {
@@ -291,8 +265,8 @@ body {
 }
 
 .register-inner-box {
-    margin-top: 20; /* Remove any top margin */
-    padding: 20px 40px; /* Adjust padding */
+    margin-top: 0; /* Remove any top margin */
+    padding: 15px 60px; /* Adjust padding */
     
 }
 
@@ -301,7 +275,7 @@ body {
 }
 
 .register-header p {
-    margin-bottom: 0px; /* Remove bottom margin */
+    margin-bottom: 4px; /* Remove bottom margin */
 }
 
 .form-title {
@@ -309,6 +283,12 @@ body {
     padding-top: 0; 
 }
 
+.error-message {
+  color: red;
+  font-size: 0.80rem;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
 
 
 

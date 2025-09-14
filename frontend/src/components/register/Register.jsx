@@ -17,6 +17,8 @@ const Register = () => {
     agreeToTerms: false,
   });
 
+  const [errors, setErrors] = useState({});
+
   // Step 2: Handle input changes
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -28,46 +30,88 @@ const Register = () => {
 
   // Step 3: Handle form submission
   const handleSubmit = (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    // Basic validation
-    if (
-      !formData.fullName ||
-      !formData.email ||
-      !formData.phone ||
-      !formData.registerNumber ||
-      !formData.password ||
-      !formData.confirmPassword
-    ) {
-      alert("Please fill in all fields.");
-      return;
-    }
+  const newErrors = {};
 
-    if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match.");
-      return;
-    }
+  //  Full Name: only letters and spaces allowed
+  if (!formData.fullName.trim()) {
+    newErrors.fullName = "Full Name is required.";
+  } else if (!/^[A-Za-z\s]+$/.test(formData.fullName)) {
+    newErrors.fullName = "Full Name should contain only letters and spaces.";
+  }
 
-    if (!formData.agreeToTerms) {
-      alert("You must agree to the terms and conditions.");
-      return;
-    }
+  //  Email: basic email format
+  if (!formData.email.trim()) {
+    newErrors.email = "Email is required.";
+  } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+    newErrors.email = "Invalid email format.";
+  }
 
-    // Proceed with actual registration logic
-    console.log("Registration Successful:", formData);
-    alert("Account created successfully!");
+  //  Phone: must be exactly 10 digits
+  if (!formData.phone.trim()) {
+    newErrors.phone = "Phone number is required.";
+  } else if (!/^\d{10}$/.test(formData.phone)) {
+    newErrors.phone = "Phone number must be 10 digits.";
+  }
 
-    // Optionally reset form
-    setFormData({
-      fullName: "",
-      email: "",
-      phone: "",
-      registerNumber: "",
-      password: "",
-      confirmPassword: "",
-      agreeToTerms: false,
-    });
-  };
+  // Register Number: exactly 10 digits, only numbers
+if (!formData.registerNumber.trim()) {
+  newErrors.registerNumber = "Register number is required.";
+} else if (!/^\d{11}$/.test(formData.registerNumber)) {
+  newErrors.registerNumber = "Register number must be 11 digits and contain only numbers.";
+}
+
+
+  //  Password: at least 8 characters, one number, one special character
+if (!formData.password) {
+  newErrors.password = "Password is required.";
+} else if (
+  !/^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/.test(formData.password)
+) {
+  newErrors.password =
+    "Password must be at least 8 characters and include at least one number and one special character.";
+}
+
+//  Confirm Password: match check
+if (!formData.confirmPassword) {
+  newErrors.confirmPassword = "Please confirm your password.";
+} else if (formData.confirmPassword !== formData.password) {
+  newErrors.confirmPassword = "Passwords do not match.";
+}
+
+
+  //  Terms Agreement
+  if (!formData.agreeToTerms) {
+    newErrors.agreeToTerms = "You must agree to the terms and conditions.";
+  }
+
+  setErrors(newErrors);
+
+  if (Object.keys(newErrors).length > 0) return;
+
+  alert("Account created successfully!");
+  console.log("Registered user:", {
+    fullName: formData.fullName,
+    email: formData.email,
+    phone: formData.phone,
+    registerNumber: formData.registerNumber,
+  });
+
+  // Reset form
+  setFormData({
+    fullName: "",
+    email: "",
+    phone: "",
+    registerNumber: "",
+    password: "",
+    confirmPassword: "",
+    agreeToTerms: false,
+  });
+  setErrors({});
+};
+
+
 
   return (
     <div className="register-container">
@@ -88,8 +132,10 @@ const Register = () => {
         <div className="register-box">
           <div className="register-inner-box">
             <div className="register-header">
-  <img src={codelabLogo} alt="CodeLab Logo" className="logo-img" />
-  <h1 className="main-title">CodeLab</h1>
+  <div className="logo-title-row">
+    <img src={codelabLogo} alt="CodeLab Logo" className="logo-img" />
+    <h1 className="main-title">CodeLab</h1>
+  </div>
   <p className="subheading">Create your account to get started</p>
 </div>
 
@@ -107,17 +153,21 @@ const Register = () => {
                 onChange={handleChange}
                 placeholder="Enter your full name"
               />
+              {errors.fullName && <p className="error-message">{errors.fullName}</p>}
+
 
               <div className="form-row spaced-row">
                 <div>
                   <label>Email</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="youremail@gmail.com"
-                  />
+<input
+  type="email"
+  name="email"
+  value={formData.email}
+  onChange={handleChange}
+  placeholder="Enter your email"
+/>
+{errors.email && <p className="error-message">{errors.email}</p>}
+
                 </div>
                 <div>
                   <label>Phone</label>
@@ -128,6 +178,7 @@ const Register = () => {
                     onChange={handleChange}
                     placeholder="Enter mobile number"
                   />
+                  {errors.phone && <p className="error-message">{errors.phone}</p>}
                 </div>
               </div>
 
@@ -139,6 +190,7 @@ const Register = () => {
                 onChange={handleChange}
                 placeholder="Enter your register number"
               />
+              {errors.registerNumber && <p className="error-message">{errors.registerNumber}</p>}
 
               <label>Password</label>
               <div className="password-field">
@@ -161,6 +213,7 @@ const Register = () => {
                   ></i>
                 </button>
               </div>
+              {errors.password && <p className="error-message">{errors.password}</p>}
 
               <label>Confirm Password</label>
               <div className="password-field">
@@ -184,6 +237,8 @@ const Register = () => {
                     }`}
                   ></i>
                 </button>
+                {errors.confirmPassword && <p className="error-message">{errors.confirmPassword}</p>}
+
               </div>
 
               <div className="checkbox-row">
@@ -201,6 +256,8 @@ const Register = () => {
                   </a>
                 </label>
               </div>
+              {errors.agreeToTerms && <p className="error-message">{errors.agreeToTerms}</p>}
+
 
               <button type="submit" className="create-account-btn">
                 Create Account
