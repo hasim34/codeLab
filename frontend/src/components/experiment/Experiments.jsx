@@ -28,6 +28,7 @@ function Experiments() {
             <NavLink
               to={`/dashboard/subject/${id}/editor/${exp.id}`}
               className="continue-btn"
+              state={{subjectId: id, problemId: exp.id}}
             >
               Continue
             </NavLink>
