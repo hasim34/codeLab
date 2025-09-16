@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {NavLink} from "react-router-dom";
 import "./login.css";
 
 const Login = () => {
@@ -71,11 +72,11 @@ const Login = () => {
 
             <a href="#" className="forgot-link">Forgot password?</a>
 
-            <button type="submit" className="signin-btn">Sign In</button>
+            <NavLink to="/dashboard" className="signin-btn">Login</NavLink>
           </form>
 
           <p className="signup-text">
-            Don’t have an account? <a href="#">Create one here</a>
+            Don’t have an account? <NavLink to="/register" className="register-link-button">Create one here</NavLink>
           </p>
         </div>
       </div>

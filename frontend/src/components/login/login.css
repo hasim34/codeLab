@@ -113,6 +113,9 @@ input {
   color: white;
   font-weight: bold;
   cursor: pointer;
+  text-align: center; 
+  display: inline-block; 
+  text-decoration: none;
 }
 
 .signup-text {
