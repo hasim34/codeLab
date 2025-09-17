@@ -1,18 +1,39 @@
 import "./experiments.css";
 import { useParams, NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function Experiments() {
   const { id } = useParams();
+  const [experiments, setExperiments] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const experiments = [
-    { id: 1, title: "Two Sum Problem", level: "Easy", progress: 100 },
-    { id: 2, title: "Reverse Linked List", level: "Medium", progress: 60 },
-  ];
+  const fetchExperiments = async () => {
+    try {
+      const res = await axios.get(
+        `${import.meta.env.VITE_API_URL}/problems/${id}/problems`
+      );
+      setExperiments(res.data);
+    } catch (err) {
+      console.error("Error fetching experiments:", err);
+      setError("Failed to load experiments");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchExperiments();
+  }, [id]);
+
+  if (loading) return <p>Loading experiments...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <div className="subject-page">
-      <h2>Data Structures & Algorithms </h2>
-      <p>Master fundamental data structures and algorithms.</p>
+      <h2>Subject {id} Problems</h2>
+      <p>Practice and master the problems for this subject.</p>
 
       <div className="experiment-list">
         {experiments.map((exp) => (
@@ -37,5 +58,4 @@ function Experiments() {
     </div>
   );
 }
-
 export default Experiments;

@@ -272,7 +272,7 @@ if (!formData.confirmPassword) {
   onChange={handleChange}
   onInput={(e) => validateField("phone", e.target.value)}
   className={fieldStatus.phone === "error" ? "error" : fieldStatus.phone === "valid" ? "valid" : ""}
-  placeholder="Enter 10-digit number starting with 6,7,8,9"
+  placeholder="Enter number"
 />
                   {errors.phone && <p className="error-message">{errors.phone}</p>}
                 </div>
@@ -286,7 +286,7 @@ if (!formData.confirmPassword) {
   onChange={handleChange}
   onInput={(e) => validateField("registerNumber", e.target.value)}
   className={fieldStatus.registerNumber === "error" ? "error" : fieldStatus.registerNumber === "valid" ? "valid" : ""}
-  placeholder="Enter number starting with 9176 (11 digits total)"
+  placeholder="Enter register number"
 />
               {errors.registerNumber && <p className="error-message">{errors.registerNumber}</p>}
 
@@ -344,21 +344,22 @@ if (!formData.confirmPassword) {
               </div>
 
               <div className="checkbox-row">
-                <input
-  type="checkbox"
-  id="terms"
-  name="agreeToTerms"
-  checked={formData.agreeToTerms}
-  onChange={handleChange}
-  className={fieldStatus.agreeToTerms === "error" ? "error" : fieldStatus.agreeToTerms === "valid" ? "valid" : ""}
-/>
-                <label htmlFor="terms">
-                  I agree to the{" "}
-                  <a href="/terms" target="_blank" rel="noopener noreferrer">
-                    Terms and Conditions
-                  </a>
-                </label>
-              </div>
+  <label htmlFor="terms" className="checkbox-label">
+    <input
+      type="checkbox"
+      id="terms"
+      name="agreeToTerms"
+      checked={formData.agreeToTerms}
+      onChange={handleChange}
+    />
+    I agree to the{" "}
+    <a href="/terms" target="_blank" rel="noopener noreferrer">
+      Terms and Conditions
+    </a>
+  </label>
+</div>
+
+
               {errors.agreeToTerms && <p className="error-message">{errors.agreeToTerms}</p>}
 
 

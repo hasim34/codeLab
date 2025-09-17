@@ -81,11 +81,11 @@ body {
 }
 
 .register-header {
-    margin-bottom: 5px;
+    margin-bottom: 2px;
 }
 
 .register-header p {
-  margin-top: 4px;
+  margin-top: 2px;
   color: #b0b0b0;
   font-size: 16px;
 }
@@ -94,7 +94,7 @@ body {
 .register-form label {
   font-weight: 500;
   font-size: 14px;
-  margin-bottom: 5px;
+  margin-bottom: 2px;
   display: block;
 }
 
@@ -141,24 +141,46 @@ body {
   cursor: pointer;
 }
 
-/* Checkbox & Terms */
 .checkbox-row {
-  display: flex;
-  align-items: center;
-  
+  width: 100%;
+  margin-top: 10px;
 }
 
-.checkbox-row input {
-  margin-right: 5px;
-}
-
-.checkbox-row label {
+.checkbox-label {
+  display: flex;            /* Use flex for proper alignment */
+  align-items: center;      /* Vertically center checkbox and text */
   font-size: 14px;
+  color: white;
+  gap: 8px;
+  line-height: 1.2;         /* Slightly tighter line height */
+  cursor: pointer;          /* Pointer cursor on hover */
+}
+
+.checkbox-label input[type="checkbox"] {
+  margin: 0;                /* Reset default margin */
+  width: 16px;              /* Consistent checkbox size */
+  height: 16px;
+  vertical-align: middle;
+  transform: none;          /* Remove scaling to avoid misalignment */
+  accent-color: #4a90e2;    /* Modern checkbox color */
+}
+
+.checkbox-label a {
+  color: #4a90e2;
+  text-decoration: none;
 }
 
 .checkbox-row a {
   color: #4a90e2;
   text-decoration: none;
+}
+
+.form-row > div {
+  margin-right: 30px; /* space between fields */
+}
+
+.form-row > div:last-child {
+  margin-right: 1; /* fix: add unit to remove space after last field */
 }
 
 /* Button */
@@ -182,7 +204,7 @@ body {
 .signin-text {
   text-align: center;
   font-size: 14px;
-  margin-top: 5px;
+  margin-top: 2px;
   color: #b0b0b0;
 }
 
@@ -223,14 +245,14 @@ body {
 .form-subtitle {
   font-size: 14px;
   color: #b0b0b0;
-  margin-bottom: 8px;
+  margin-bottom: 2px;
   text-align: left;
 }
 
 /* Adjust the logo + header */
 .register-header {
   text-align: center;
-  margin-bottom: 5px;
+  margin-bottom: 2px;
 }
 
 .logo-img {
@@ -255,13 +277,13 @@ body {
   align-items: center;
   justify-content: center; /* or use `start` for left alignment */
   gap: 10px; /* space between logo and title */
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 
 .register-header {
     text-align: center;
-    margin-bottom: 5px; /* Reduced from 30px */
+    margin-bottom: 2px; 
 }
 
 .register-inner-box {
@@ -275,7 +297,7 @@ body {
 }
 
 .register-header p {
-    margin-bottom: 4px; /* Remove bottom margin */
+    margin-bottom: 2px; /* Remove bottom margin */
 }
 
 .form-title {
@@ -303,7 +325,7 @@ input.valid {
 .error-message {
   color: #ff4757;
   font-size: 14px;
-  margin-top: 5px;
+  margin-top: 2px;
   min-height: 20px;
 }
 
