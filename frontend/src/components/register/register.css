@@ -71,7 +71,7 @@ body {
 .logo-img {
   width: 40px;
   height: 40px;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
 }
 
 .register-header h1 {
@@ -81,7 +81,7 @@ body {
 }
 
 .register-header {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .register-header p {
@@ -105,7 +105,7 @@ body {
 {
   width: 100%;
   padding: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 2px;
   border-radius: 6px;
   border: 1px solid #3b4a5a;
   background-color: #1a2533;
@@ -288,6 +288,23 @@ body {
   font-size: 0.80rem;
   margin-top: 0px;
   margin-bottom: 0px;
+}
+
+input.error {
+  border-color: #ff4757;
+  box-shadow: 0 0 0 2px rgba(255, 71, 87, 0.2);
+}
+
+input.valid {
+  border-color: #2ed573;
+  box-shadow: 0 0 0 2px rgba(46, 213, 115, 0.2);
+}
+
+.error-message {
+  color: #ff4757;
+  font-size: 14px;
+  margin-top: 5px;
+  min-height: 20px;
 }
 
 

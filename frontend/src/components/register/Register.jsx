@@ -5,7 +5,7 @@ import codelabLogo from "./codelab-logo.png"; // your logo image
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
+  
   // Step 1: State for form fields
   const [formData, setFormData] = useState({
     fullName: "",
@@ -18,15 +18,105 @@ const Register = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [fieldStatus, setFieldStatus] = useState({});
+
 
   // Step 2: Handle input changes
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === "checkbox" ? checked : value,
-    });
-  };
+  const { name, value, type, checked } = e.target;
+  setFormData({
+    ...formData,
+    [name]: type === "checkbox" ? checked : value,
+  });
+
+  // Validate the field as user types
+  validateField(name, type === "checkbox" ? checked : value);
+};
+
+const validateField = (name, value) => {
+  let error = "";
+  let isValid = false;
+
+  switch (name) {
+    case "fullName":
+      if (!value.trim()) {
+        error = "Full Name is required.";
+      } else if (!/^[A-Za-z\s]+$/.test(value)) {
+        error = "Full Name should contain only letters and spaces.";
+      } else {
+        isValid = true;
+      }
+      break;
+    case "email":
+      if (!value.trim()) {
+        error = "Email is required.";
+      } else if (!/\S+@\S+\.\S+/.test(value)) {
+        error = "Invalid email format.";
+      } else {
+        isValid = true;
+      }
+      break;
+    case "phone":
+      if (!value.trim()) {
+        error = "Phone number is required.";
+      } else if (!/^[6-9]\d{9}$/.test(value)) {
+        error = "Phone number must start with 6,7,8,9 and be 10 digits.";
+      } else {
+        isValid = true;
+      }
+      break;
+    case "registerNumber":
+      if (!value.trim()) {
+        error = "Register number is required.";
+      } else if (!/^9176\d{7}$/.test(value)) {
+        error = "Register number must start with 9176 and be 11 digits total.";
+      } else {
+        isValid = true;
+      }
+      break;
+    case "password":
+      if (!value) {
+        error = "Password is required.";
+      } else if (
+        !/^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/.test(value)
+      ) {
+        error =
+          "Password must be at least 8 characters and include at least one number and one special character.";
+      } else {
+        isValid = true;
+      }
+      break;
+    case "confirmPassword":
+      if (!value) {
+        error = "Please confirm your password.";
+      } else if (value !== formData.password) {
+        error = "Passwords do not match.";
+      } else {
+        isValid = true;
+      }
+      break;
+    case "agreeToTerms":
+      if (!value) {
+        error = "You must agree to the terms and conditions.";
+      } else {
+        isValid = true;
+      }
+      break;
+    default:
+      break;
+  }
+
+  // Update errors and field status
+  setErrors({
+    ...errors,
+    [name]: error,
+  });
+
+  setFieldStatus({
+    ...fieldStatus,
+    [name]: isValid ? "valid" : error ? "error" : "",
+  });
+};
 
   // Step 3: Handle form submission
   const handleSubmit = (e) => {
@@ -48,18 +138,18 @@ const Register = () => {
     newErrors.email = "Invalid email format.";
   }
 
-  //  Phone: must be exactly 10 digits
-  if (!formData.phone.trim()) {
-    newErrors.phone = "Phone number is required.";
-  } else if (!/^\d{10}$/.test(formData.phone)) {
-    newErrors.phone = "Phone number must be 10 digits.";
-  }
+//  Phone: must start with 6,7,8,9 and be exactly 10 digits
+if (!formData.phone.trim()) {
+  newErrors.phone = "Phone number is required.";
+} else if (!/^[6-9]\d{9}$/.test(formData.phone)) {
+  newErrors.phone = "Phone number must start with 6,7,8,9 and be 10 digits.";
+}
 
-  // Register Number: exactly 10 digits, only numbers
+// Register Number: must start with 9176 and be exactly 11 digits
 if (!formData.registerNumber.trim()) {
   newErrors.registerNumber = "Register number is required.";
-} else if (!/^\d{11}$/.test(formData.registerNumber)) {
-  newErrors.registerNumber = "Register number must be 11 digits and contain only numbers.";
+} else if (!/^9176\d{7}$/.test(formData.registerNumber)) {
+  newErrors.registerNumber = "Register number must start with 9176 and be 11 digits total.";
 }
 
 
@@ -147,12 +237,14 @@ if (!formData.confirmPassword) {
             <form className="register-form" onSubmit={handleSubmit}>
               <label>Full Name</label>
               <input
-                type="text"
-                name="fullName"
-                value={formData.fullName}
-                onChange={handleChange}
-                placeholder="Enter your full name"
-              />
+  type="text"
+  name="fullName"
+  value={formData.fullName}
+  onChange={handleChange}
+  onInput={(e) => validateField("fullName", e.target.value)}
+  className={fieldStatus.fullName === "error" ? "error" : fieldStatus.fullName === "valid" ? "valid" : ""}
+  placeholder="Enter your full name"
+/>
               {errors.fullName && <p className="error-message">{errors.fullName}</p>}
 
 
@@ -164,6 +256,8 @@ if (!formData.confirmPassword) {
   name="email"
   value={formData.email}
   onChange={handleChange}
+  onInput={(e) => validateField("email", e.target.value)}
+  className={fieldStatus.email === "error" ? "error" : fieldStatus.email === "valid" ? "valid" : ""}
   placeholder="Enter your email"
 />
 {errors.email && <p className="error-message">{errors.email}</p>}
@@ -172,36 +266,42 @@ if (!formData.confirmPassword) {
                 <div>
                   <label>Phone</label>
                   <input
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="Enter mobile number"
-                  />
+  type="tel"
+  name="phone"
+  value={formData.phone}
+  onChange={handleChange}
+  onInput={(e) => validateField("phone", e.target.value)}
+  className={fieldStatus.phone === "error" ? "error" : fieldStatus.phone === "valid" ? "valid" : ""}
+  placeholder="Enter 10-digit number starting with 6,7,8,9"
+/>
                   {errors.phone && <p className="error-message">{errors.phone}</p>}
                 </div>
               </div>
 
               <label>Register Number</label>
               <input
-                type="text"
-                name="registerNumber"
-                value={formData.registerNumber}
-                onChange={handleChange}
-                placeholder="Enter your register number"
-              />
+  type="text"
+  name="registerNumber"
+  value={formData.registerNumber}
+  onChange={handleChange}
+  onInput={(e) => validateField("registerNumber", e.target.value)}
+  className={fieldStatus.registerNumber === "error" ? "error" : fieldStatus.registerNumber === "valid" ? "valid" : ""}
+  placeholder="Enter number starting with 9176 (11 digits total)"
+/>
               {errors.registerNumber && <p className="error-message">{errors.registerNumber}</p>}
 
               <label>Password</label>
               <div className="password-field">
                 <input
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  placeholder="Create a strong password"
-                  autoComplete="new-password"
-                />
+  type={showPassword ? "text" : "password"}
+  name="password"
+  value={formData.password}
+  onChange={handleChange}
+  onInput={(e) => validateField("password", e.target.value)}
+  className={fieldStatus.password === "error" ? "error" : fieldStatus.password === "valid" ? "valid" : ""}
+  placeholder="Create a strong password"
+  autoComplete="new-password"
+/>
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
@@ -218,13 +318,15 @@ if (!formData.confirmPassword) {
               <label>Confirm Password</label>
               <div className="password-field">
                 <input
-                  type={showConfirmPassword ? "text" : "password"}
-                  name="confirmPassword"
-                  value={formData.confirmPassword}
-                  onChange={handleChange}
-                  placeholder="Confirm your password"
-                  autoComplete="new-password"
-                />
+  type={showConfirmPassword ? "text" : "password"}
+  name="confirmPassword"
+  value={formData.confirmPassword}
+  onChange={handleChange}
+  onInput={(e) => validateField("confirmPassword", e.target.value)}
+  className={fieldStatus.confirmPassword === "error" ? "error" : fieldStatus.confirmPassword === "valid" ? "valid" : ""}
+  placeholder="Confirm your password"
+  autoComplete="new-password"
+/>
                 <button
                   type="button"
                   onClick={() =>
@@ -243,12 +345,13 @@ if (!formData.confirmPassword) {
 
               <div className="checkbox-row">
                 <input
-                  type="checkbox"
-                  id="terms"
-                  name="agreeToTerms"
-                  checked={formData.agreeToTerms}
-                  onChange={handleChange}
-                />
+  type="checkbox"
+  id="terms"
+  name="agreeToTerms"
+  checked={formData.agreeToTerms}
+  onChange={handleChange}
+  className={fieldStatus.agreeToTerms === "error" ? "error" : fieldStatus.agreeToTerms === "valid" ? "valid" : ""}
+/>
                 <label htmlFor="terms">
                   I agree to the{" "}
                   <a href="/terms" target="_blank" rel="noopener noreferrer">
