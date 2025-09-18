@@ -128,7 +128,7 @@ const validateField = (name, value) => {
   if (!formData.fullName.trim()) {
     newErrors.fullName = "Full Name is required.";
   } else if (!/^[A-Za-z\s]+$/.test(formData.fullName)) {
-    newErrors.fullName = "Full Name should contain only letters and spaces.";
+    newErrors.fullName = "Name should contain only letters and spaces.";
   }
 
   //  Email: basic email format
@@ -142,14 +142,14 @@ const validateField = (name, value) => {
 if (!formData.phone.trim()) {
   newErrors.phone = "Phone number is required.";
 } else if (!/^[6-9]\d{9}$/.test(formData.phone)) {
-  newErrors.phone = "Phone number must start with 6,7,8,9 and be 10 digits.";
+  newErrors.phone = "Must start with 6,7,8,9 and be 10 digits.";
 }
 
 // Register Number: must start with 9176 and be exactly 11 digits
 if (!formData.registerNumber.trim()) {
   newErrors.registerNumber = "Register number is required.";
 } else if (!/^9176\d{7}$/.test(formData.registerNumber)) {
-  newErrors.registerNumber = "Register number must start with 9176 and be 11 digits total.";
+  newErrors.registerNumber = "Must start with 9176 and be 11 digits total.";
 }
 
 
@@ -316,32 +316,35 @@ if (!formData.confirmPassword) {
               {errors.password && <p className="error-message">{errors.password}</p>}
 
               <label>Confirm Password</label>
-              <div className="password-field">
-                <input
-  type={showConfirmPassword ? "text" : "password"}
-  name="confirmPassword"
-  value={formData.confirmPassword}
-  onChange={handleChange}
-  onInput={(e) => validateField("confirmPassword", e.target.value)}
-  className={fieldStatus.confirmPassword === "error" ? "error" : fieldStatus.confirmPassword === "valid" ? "valid" : ""}
-  placeholder="Confirm your password"
-  autoComplete="new-password"
-/>
-                <button
-                  type="button"
-                  onClick={() =>
-                    setShowConfirmPassword(!showConfirmPassword)
-                  }
-                >
-                  <i
-                    className={`fas ${
-                      showConfirmPassword ? "fa-eye-slash" : "fa-eye"
-                    }`}
-                  ></i>
-                </button>
-                {errors.confirmPassword && <p className="error-message">{errors.confirmPassword}</p>}
+<div className="password-field">
+  <input
+    type={showConfirmPassword ? "text" : "password"}
+    name="confirmPassword"
+    value={formData.confirmPassword}
+    onChange={handleChange}
+    onInput={(e) => validateField("confirmPassword", e.target.value)}
+    className={fieldStatus.confirmPassword === "error" ? "error" : fieldStatus.confirmPassword === "valid" ? "valid" : ""}
+    placeholder="Confirm your password"
+    autoComplete="new-password"
+  />
+  <button
+    type="button"
+    onClick={() =>
+      setShowConfirmPassword(!showConfirmPassword)
+    }
+  >
+    <i
+      className={`fas ${
+        showConfirmPassword ? "fa-eye-slash" : "fa-eye"
+      }`}
+    ></i>
+  </button>
+</div>
 
-              </div>
+{/* Move this OUTSIDE the password-field div */}
+{errors.confirmPassword && (
+  <p className="error-message">{errors.confirmPassword}</p>
+)}
 
               <div className="checkbox-row">
   <label htmlFor="terms" className="checkbox-label">

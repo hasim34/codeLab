@@ -1,3 +1,4 @@
+
 body {
   margin:0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -11,13 +12,13 @@ body {
 .register-container {
   display: flex;
   height: 100vh;
-  overflow: hidden; 
+  width: 100vw;
+  overflow: hidden;
 }
 
 /* Left Panel (Image + Text) */
 .register-left {
   flex: 1;
-  padding: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -27,9 +28,9 @@ body {
 }
 
 .register-left img.register-image {
-  width: 400px;
-  height: auto;
-  border-radius: 20px;
+  width: 300px;
+  height: 200px;
+  border-radius: 12px;
   margin-bottom: 30px;
 }
 
@@ -58,7 +59,6 @@ body {
 
 /* Outer Card */
 .register-box {
-  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -71,21 +71,27 @@ body {
 .logo-img {
   width: 40px;
   height: 40px;
-  margin-bottom: 4px;
+  margin-bottom: 0px;
 }
 
 .register-header h1 {
   margin: 0;
   font-size: 24px;
   font-weight: bold;
+  margin-bottom: 0px;
+}
+
+.register-header h2{
+  margin-bottom: 0px;
 }
 
 .register-header {
-    margin-bottom: 2px;
+    margin-bottom: 0px;
 }
 
 .register-header p {
-  margin-top: 2px;
+  margin-top: 0px;
+  margin-bottom: 0px;
   color: #b0b0b0;
   font-size: 16px;
 }
@@ -94,7 +100,8 @@ body {
 .register-form label {
   font-weight: 500;
   font-size: 14px;
-  margin-bottom: 2px;
+  margin-bottom: 0px;
+  margin-top: 3px;
   display: block;
 }
 
@@ -105,7 +112,7 @@ body {
 {
   width: 100%;
   padding: 10px;
-  margin-bottom: 2px;
+  margin-bottom: 0px;
   border-radius: 6px;
   border: 1px solid #3b4a5a;
   background-color: #1a2533;
@@ -122,6 +129,7 @@ body {
 /* Password Field */
 .password-field {
   position: relative;
+  
 }
 
 .password-field input {
@@ -143,7 +151,7 @@ body {
 
 .checkbox-row {
   width: 100%;
-  margin-top: 10px;
+  margin-top: 0px;
 }
 
 .checkbox-label {
@@ -175,13 +183,6 @@ body {
   text-decoration: none;
 }
 
-.form-row > div {
-  margin-right: 30px; /* space between fields */
-}
-
-.form-row > div:last-child {
-  margin-right: 1; /* fix: add unit to remove space after last field */
-}
 
 /* Button */
 .create-account-btn {
@@ -204,7 +205,8 @@ body {
 .signin-text {
   text-align: center;
   font-size: 14px;
-  margin-top: 2px;
+  margin-top: 0px;
+  margin-bottom: 0px;
   color: #b0b0b0;
 }
 
@@ -214,11 +216,7 @@ body {
 }
 
 .form-row > div {
-  margin-right: 30px; /* space between fields */
-}
-
-.form-row > div:last-child {
-  margin-right: 10; /* remove space after the last field */
+  margin-right: 11px; /* space between fields */
 }
 
 
@@ -228,7 +226,7 @@ body {
   padding: 2px;
   border-radius: 16px;
   width: 60%;
-  max-width: 80vh;
+  max-width: 500px;
   box-shadow: 0 4px 40px rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(20px); /* Frosted effect */
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -245,14 +243,16 @@ body {
 .form-subtitle {
   font-size: 14px;
   color: #b0b0b0;
-  margin-bottom: 2px;
+  margin-bottom: 0px;
   text-align: left;
+  margin-top: 3px;
 }
 
 /* Adjust the logo + header */
 .register-header {
   text-align: center;
-  margin-bottom: 2px;
+  margin-bottom: 0px;
+  margin-bottom: 0px;
 }
 
 .logo-img {
@@ -277,32 +277,26 @@ body {
   align-items: center;
   justify-content: center; /* or use `start` for left alignment */
   gap: 10px; /* space between logo and title */
-  margin-bottom: 2px;
+  margin-bottom: 0px;
 }
 
 
 .register-header {
     text-align: center;
-    margin-bottom: 2px; 
+    margin-bottom: 0px; 
 }
 
 .register-inner-box {
     margin-top: 0; /* Remove any top margin */
-    padding: 15px 60px; /* Adjust padding */
+    padding: 15px 50px; /* Adjust padding */
     
 }
 
-.register-header h1 {
-    margin-bottom: 0px; /* Reduced spacing */
-}
-
-.register-header p {
-    margin-bottom: 2px; /* Remove bottom margin */
-}
 
 .form-title {
     margin-top: 0; 
     padding-top: 0; 
+    margin-bottom: 0px;
 }
 
 .error-message {
@@ -312,20 +306,10 @@ body {
   margin-bottom: 0px;
 }
 
-input.error {
-  border-color: #ff4757;
-  box-shadow: 0 0 0 2px rgba(255, 71, 87, 0.2);
-}
-
-input.valid {
-  border-color: #2ed573;
-  box-shadow: 0 0 0 2px rgba(46, 213, 115, 0.2);
-}
-
 .error-message {
   color: #ff4757;
-  font-size: 14px;
-  margin-top: 2px;
+  font-size: 13px;
+  margin-top: 0px;
   min-height: 20px;
 }
 
