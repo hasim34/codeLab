@@ -8,8 +8,8 @@ const getProblemData = async (problemId, subjectId) => {
     const filePath = path.join(
       __dirname,
       "../json/testcases",
-      "subject${subjectId}",
-      "problem${problemId}.json"
+      `subject${subjectId}`,
+      `problem${problemId}.json`
     );
 
     if (!fs.existsSync(filePath)) {
@@ -34,7 +34,7 @@ const executeCode = async (req, res) => {
       return res.status(400).json({ error: "Subject ID is required" });
     }
 
-    const problemData = await this.getProblemData(problemId, subjectId);
+    const problemData = await getProblemData(problemId, subjectId);
 
     if (!problemData.samples || problemData.samples.length === 0) {
       return res
@@ -43,7 +43,7 @@ const executeCode = async (req, res) => {
     }
 
     const testCase = problemData.samples[0];
-
+    
     const result = await Judge0Service.submitCode(
       sourceCode,
       languageId,
@@ -76,7 +76,7 @@ const submitSolution = async (req, res) => {
       return res.status(400).json({ error: "subjectid is required" });
     }
 
-    const problemData = await this.getProblemData(problemId, subjectId);
+    const problemData = await getProblemData(problemId, subjectId);
 
     const allTestCases = [...problemData.samples, ...problemData.hidden];
 
@@ -108,11 +108,10 @@ const submitSolution = async (req, res) => {
         time: result.time || "0.00",
         memory: result.memory || 0,
       });
-
-      const status = passedTests === allTestCases.length? 'Accepted' : 'Wrong Answer';
-
-      res.json({status, passedTests, totalTests: allTestCases.length, testResults: testResults.slice(0, problemData.samples.length) });
     }
+    const status = passedTests === allTestCases.length? 'Accepted' : 'Wrong Answer';
+    res.json({status, passedTests, totalTests: allTestCases.length, testResults: testResults.slice(0, problemData.samples.length) });
+
   } catch (err) {
     console.error("Submission error: ", err);
     res.status(500).json({ error: error.message });

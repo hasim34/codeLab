@@ -3,7 +3,7 @@ const axios = require("axios");
 class Judge0Service {
     static async submitCode(sourceCode, languageId, stdin = null){
         try{
-            const data = { sourceCode: sourceCode, languageId: languageId, stdin: stdin || ''};
+            const data = { source_code: sourceCode, language_id: languageId, stdin: stdin || ''};
             const response = await axios.post(`${process.env.JUDGE0_API_URL}`, data,{
                 params: { base64_encoded: false, wait: true}, headers: {'Content-Type':'application/json'}
             });

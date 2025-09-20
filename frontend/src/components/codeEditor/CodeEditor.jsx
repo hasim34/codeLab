@@ -2,15 +2,15 @@ import { useEffect, useState } from "react";
 import "./editor.css";
 import axios from "axios";
 import { getLanguageId } from "../../utils/languages";
-import {useLocation} from "react-router-dom";
-import {useLoader} from "../../context/LoaderContext";
+import { useLocation } from "react-router-dom";
+import { useLoader } from "../../context/LoaderContext";
 
 export default function CodeEditor() {
-  const {loading, showLoader, hideLoader} = useLoader();
+  const { loading, showLoader, hideLoader } = useLoader();
   const location = useLocation();
-  const { subjectId, problemId} = location.state || {};
+  const { subjectId, problemId } = location.state || {};
   const [language, setLanguage] = useState("Python");
-  const [problemData, setProbelmData] = useState(null);
+  const [problemData, setProblemData] = useState(null);
   const [code, setCode] = useState("");
   const [consoleOutput, setConsoleOutput] = useState("");
   const [testOutput, setTestOutput] = useState("");
@@ -25,7 +25,7 @@ export default function CodeEditor() {
             import.meta.env.VITE_API_URL
           }/problems/subject/${subjectId}/problem/${problemId}`
         );
-        setProbelmData(res.data);
+        setProblemData(res.data);
         setCode(`#Write your ${language} code for: ${res.data.title}\n`);
       } catch (err) {
         console.error("Error fetching problem details: ", err);
@@ -46,7 +46,7 @@ export default function CodeEditor() {
     try {
       const languageId = getLanguageId(language);
       const res = await axios.post(
-        `${import.meta.VITE_API_URL}/execution/execute`,
+        `${import.meta.env.VITE_API_URL}/execution/execute`,
         {
           sourceCode: code,
           languageId: languageId,
@@ -67,13 +67,13 @@ export default function CodeEditor() {
       setConsoleOutput(
         `Error: ${err.response?.data?.error || "Failed to execute code"}`
       );
-    } finally{
+    } finally {
       hideLoader();
     }
   };
 
   const handleSubmit = async () => {
-    if (!subjectId || !setProbelmData) {
+    if (!subjectId || !problemId) {
       setTestOutput("Error: Subject ID or Problem Id missing!");
       return;
     }
@@ -112,12 +112,12 @@ export default function CodeEditor() {
       setTestOutput(
         `Error: ${err.response?.data?.error || "Failed to submit solution"}`
       );
-    } finally{
+    } finally {
       hideLoader();
     }
   };
 
-  if(!problemData){
+  if (!problemData) {
     return <div>Loading problem...</div>;
   }
 
@@ -126,26 +126,31 @@ export default function CodeEditor() {
       <div className="sidebar">
         <div className="problem-header">
           <h2>{problemData.title}</h2>
-          <span className="{`difficulty-badge ${problemData.difficulty}`}"> {problemData.difficulty} </span>
+          <span className={`difficulty-badge ${problemData.difficulty}`}>
+            {" "}
+            {problemData.difficulty}{" "}
+          </span>
         </div>
         <div className="description">
           <h3>Description</h3>
           <p>{problemData.description}</p>
 
-          {problemData.examples && problemData.examples.map( (example, index) => {
+          {problemData.examples?.map((example, index) => (
             <div key={index}>
-              <h4>Example {index+1}</h4>
-              <p>Input {example.input}</p>
+              <h4>Example {index + 1}</h4>
+              <p>Input: {example.input}</p>
               {example.target && <p>Target: {example.target}</p>}
               <p>Output: {example.output}</p>
               {example.explanation && <p>Explanation: {example.explanation}</p>}
             </div>
-          })}
+          ))}
 
           <h4>Constraints:</h4>
-          <ul> {problemData.constraints.map( (constraint, index) => {
-            <li key={index}>{constraint}</li>
-          })}</ul>
+          <ul>
+            {problemData.constraints?.map((constraint, index) => (
+              <li key={index}>{constraint}</li>
+            ))}
+          </ul>
         </div>
       </div>
 
@@ -176,18 +181,26 @@ export default function CodeEditor() {
           id="code-editor"
           className="code-editor"
           value={code}
-          onChange={ (e) => setCode(e.target.value)}
+          onChange={(e) => setCode(e.target.value)}
           placeholder={`Write your ${language} code here...`}
         />
 
         <div className="outputs-container">
           <div className="console-output">
             <h4>Console Output</h4>
-            <textarea className="console-textarea" readOnly value={consoleOutput} />
+            <textarea
+              className="console-textarea"
+              readOnly
+              value={consoleOutput}
+            />
           </div>
           <div className="testcase-output">
             <h4>Test Case Output</h4>
-            <textarea className="console-textarea" readOnly value={testOutput} />
+            <textarea
+              className="console-textarea"
+              readOnly
+              value={testOutput}
+            />
           </div>
         </div>
       </div>
