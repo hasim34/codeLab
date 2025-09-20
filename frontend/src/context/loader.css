@@ -1,72 +1,145 @@
-/* Base theme colors */
+/* src/styles/codelab.css */
+
+/* Enhanced theme colors with innovative gradients and glows */
 :root {
-  --primary-dark-blue: #1a2a44; /* Deep dark blue base */
-  --secondary-blue: #2e4a6a; /* Lighter accent blue */
-  --accent-teal: #4da8da; /* Subtle teal for highlights */
-  --text-light: #e0e7f0; /* Light text for readability */
-  --shadow-soft: 0 4px 8px rgba(0, 0, 0, 0.2);
+  --primary-dark-blue: #0f1e38; /* Deeper cosmic blue for immersion */
+  --secondary-blue: #243b5e; /* Muted blue with a starry night feel */
+  --accent-teal: #3a9bcb; /* Vibrant teal with subtle cyan undertone */
+  --text-light: #d9e2ec; /* Softer light text for better contrast */
+  --glow-accent: rgba(58, 155, 203, 0.5); /* Teal glow for futuristic effects */
+  --shadow-soft: 0 6px 12px rgba(0, 0, 0, 0.25);
+  --gradient-bg: linear-gradient(135deg, var(--primary-dark-blue) 0%, #162a4a 100%); /* Subtle cosmic gradient */
 }
 
-/* Loader container */
+/* Global styles with innovative background texture */
+body {
+  background: var(--gradient-bg);
+  color: var(--text-light);
+  font-family: 'Fira Code', monospace; /* Modern coding font for authenticity */
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  position: relative;
+}
+
+/* Loader container with subtle starry overlay */
 .global-loader {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(26, 42, 68, 0.8); /* Semi-transparent overlay */
+  background: rgba(15, 30, 56, 0.85); /* Deeper overlay with cosmic depth */
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  overflow: hidden;
 }
 
-/* Unique orbital loader animation */
+/* Innovative nebula loader: Central pulse with orbiting code fragments */
 .loader-orbit {
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   position: relative;
-  animation: rotate 2s linear infinite;
+  animation: nebula-rotate 3s linear infinite;
 }
 
-.orbit-dot {
+.loader-orbit::before {
+  content: '';
   position: absolute;
-  width: 12px;
-  height: 12px;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
   background: var(--accent-teal);
   border-radius: 50%;
-  animation: orbit 1s ease-in-out infinite;
+  transform: translate(-50%, -50%);
+  animation: pulse-core 1.5s ease-in-out infinite;
+  box-shadow: 0 0 15px var(--glow-accent), 0 0 30px var(--glow-accent);
 }
 
+/* Orbiting elements styled as abstract code symbols */
+.orbit-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--accent-teal);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--glow-accent);
+  animation: nebula-orbit 2s ease-in-out infinite;
+}
+
+/* Unique positioning for asymmetrical orbit */
 .orbit-dot:nth-child(1) {
-  top: 0;
+  top: -10px;
   left: 50%;
   transform: translateX(-50%);
   animation-delay: 0s;
+  animation-duration: 1.8s; /* Varied speeds for dynamism */
 }
 
 .orbit-dot:nth-child(2) {
   top: 50%;
-  right: 0;
+  right: -15px;
   transform: translateY(-50%);
-  animation-delay: 0.3s;
+  animation-delay: 0.4s;
+  animation-duration: 2.2s;
 }
 
 .orbit-dot:nth-child(3) {
-  bottom: 0;
+  bottom: -12px;
   left: 50%;
   transform: translateX(-50%);
-  animation-delay: 0.6s;
+  animation-delay: 0.8s;
+  animation-duration: 2s;
 }
 
-@keyframes rotate {
+/* Add a fourth dot for added complexity and innovation */
+.orbit-dot:nth-child(4) {
+  top: 50%;
+  left: -10px;
+  transform: translateY(-50%);
+  animation-delay: 1.2s;
+  animation-duration: 1.6s;
+  width: 8px;
+  height: 8px; /* Smaller for variety */
+}
+
+/* Trail effect using pseudo-elements */
+.orbit-dot::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--accent-teal);
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: trail-fade 1s ease-out infinite;
+}
+
+/* Keyframes for enhanced animations */
+@keyframes nebula-rotate {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
 
-@keyframes orbit {
-  0% { transform: translate(-50%, -50%) scale(1); }
-  50% { transform: translate(-50%, -50%) scale(0.6); }
-  100% { transform: translate(-50%, -50%) scale(1); }
+@keyframes nebula-orbit {
+  0% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+  50% { transform: translate(-50%, -50%) scale(0.7) rotate(180deg); }
+  100% { transform: translate(-50%, -50%) scale(1) rotate(360deg); }
+}
+
+@keyframes pulse-core {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+@keyframes trail-fade {
+  0% { transform: scale(1); opacity: 0.5; }
+  100% { transform: scale(0.5) translate(-100%, -100%); opacity: 0; }
 }
 

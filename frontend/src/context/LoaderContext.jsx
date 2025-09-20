@@ -25,6 +25,7 @@ export const LoaderProvider = ({ children }) => {
             <span className="orbit-dot"></span>
             <span className="orbit-dot"></span>
             <span className="orbit-dot"></span>
+            <span className="orbit-dot"></span>
           </div>
         </div>
       )}
