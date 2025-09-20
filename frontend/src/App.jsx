@@ -6,14 +6,21 @@ import Dashboard from "./components/dashboard/Dashboard";
 import Experiments from "./components/experiment/Experiments";
 import CodeEditor from "./components/codeEditor/CodeEditor";
 import Profile from "./components/profile/Profile";
+import Verification from "./components/forgot/Verification";
+import Otp from "./components/forgot/Otp";
+import ResetPassword from "./components/forgot/resetpassword";
+
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Login/>} />
+        <Route path="/verification" element={<Verification />} />
+        <Route path="/otp" element={<Otp />} />
+        <Route path="/reset" element={<ResetPassword />} />
         <Route path="/register" element={<Register/>} />
-
+        
         <Route path="/dashboard" element={<Layout/>}>
           <Route index element={<Dashboard/>}/>
           <Route path="subject/:id" element={<Experiments/>}/>

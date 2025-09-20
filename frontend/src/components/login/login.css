@@ -77,7 +77,7 @@ input {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid #383e4f;
+  border: 1px solid #4b4c4d;
   border-radius: 8px;
   background: #445267;
   color: white;
@@ -95,14 +95,27 @@ input {
   cursor: pointer;
 }
 
+
 /* Links and button */
 .forgot-link {
   display: block;
   margin-bottom: 20px;
+  background: #2e3a4b;
   color: #2563eb;
   text-decoration: none;
   font-size: 14px;
 }
+
+.forgot-link a {
+  color: #2057cc;       
+  text-decoration: underline; 
+  font-weight: 500;   
+}
+
+.forgot-link a:hover {
+  color: #f0f0f0;    
+}
+
 
 .signin-btn {
   width: 100%;
@@ -121,7 +134,7 @@ input {
 }
 
 .signup-text a {
-  color: #2563eb;
+  color:#2057cc ;
   text-decoration: none;
 }
 
