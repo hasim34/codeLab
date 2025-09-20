@@ -1,21 +1,27 @@
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const cookieParser=require("cookie-parser");
 
 dotenv.config();
 
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+}));
 app.use(express.json());
+app.use(cookieParser());
+
 
 const subjectRoutes = require("./routes/subjectRoutes");
-// const authRoutes = require("./routes/authRoutes");
+ const authRoutes = require("./routes/authRoutes");
  const problemRoutes = require("./routes/problemRoutes");
 // const submissionRoutes = require("./routes/submissionRoutes");
 // const userRoutes = require("./routes/userRoutes");
 
 app.use("/api/subjects", subjectRoutes);
-// app.use("/api/auth", authRoutes);
+ app.use("/api/auth", authRoutes);
  app.use("/api/problems", problemRoutes);
 // app.use("/api/submissions", submissionRoutes);
 // app.use("/api/users", userRoutes);
