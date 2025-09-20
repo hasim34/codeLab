@@ -1,0 +1,108 @@
+/* 
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+  margin: 10px 0 20px 0;
+}
+
+.breadcrumbs a {
+  text-decoration: none;
+  color: #555;
+  transition: color 0.2s ease-in-out;
+}
+
+.breadcrumbs a:hover {
+  color: #007bff; 
+}
+
+.breadcrumbs span {
+  color: #999; 
+}
+
+.breadcrumbs span:last-child {
+  color: #000; 
+  font-weight: 600;
+} */
+
+
+/* 
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #94a3b8;
+  margin: 1rem 0 1.5rem 0;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(6px);
+}
+
+.breadcrumbs a {
+  text-decoration: none;
+  color: #cbd5e1;
+  padding: 3px 6px;
+  border-radius: 4px;
+  transition: all 0.25s ease;
+}
+
+.breadcrumbs a:hover {
+  color: #fff;
+  background: rgba(59, 130, 246, 0.15); 
+}
+
+.breadcrumbs span {
+  color: #64748b;
+}
+
+.breadcrumbs span:last-child {
+  color: #f8fafc;
+  font-weight: 600;
+} */
+
+
+
+/* 🔹 Breadcrumbs Styling */
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #94a3b8; /* slate-400 */
+  margin: 1rem 0 1.5rem 0;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  background: linear-gradient(90deg, rgba(15,23,42,0.85), rgba(30,41,59,0.85));
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+
+.breadcrumbs a {
+  text-decoration: none;
+  color: #cbd5e1; /* slate-300 */
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.25s ease;
+}
+
+.breadcrumbs a:hover {
+  color: #fff;
+  background: rgba(37, 99, 235, 0.2); /* blue-600 with transparency */
+}
+
+.breadcrumbs span {
+  color: #64748b; /* slate-500 separator */
+}
+
+.breadcrumbs span:last-child {
+  color: #f1f5f9; /* slate-100 */
+  font-weight: 600;
+}
