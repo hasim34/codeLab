@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./otp.css";
+import { FaEnvelope } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 function OTP() {
@@ -30,7 +31,11 @@ function OTP() {
   return (
     <div className="otp-page">
       <div className="otp-box">
+        <div className="icon-circle">
+          <FaEnvelope size={28} />
+        </div>
         <h2>Enter OTP</h2>
+        <p className="subtext">We’ve sent a 6-digit code to your email</p>
         <form onSubmit={handleSubmit}>
           <label>OTP</label>
           <input

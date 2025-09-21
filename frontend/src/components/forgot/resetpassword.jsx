@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaLock } from "react-icons/fa";
 import "./resetpassword.css";
 
 const Reset = () => {
@@ -35,7 +36,12 @@ const Reset = () => {
   return (
     <div className="reset-page">
       <div className="reset-box">
+        <div className="icon-circle">
+          <FaLock size={28} />
+        </div>
+
         <h2>Reset Password</h2>
+        <p className="subtext">Create a new password for your account</p>
         <form onSubmit={handleSubmit}>
           <label>New Password</label>
           <input
@@ -60,7 +66,7 @@ const Reset = () => {
           />
 
           {error && <p style={{ color: "red" }}>{error}</p>} {/* <-- Show error */}
-
+            <p className="note">Password must be at least 8 characters long</p>
           <button type="submit" className="reset-btn">
             Reset Password
           </button>

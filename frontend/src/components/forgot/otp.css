@@ -15,6 +15,36 @@
   text-align: left;
 }
 
+.icon-circle {
+  background: #4a90e2;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px auto;
+  color: #fff;
+}
+
+.subtext {
+  font-size: 14px;
+  color: #aaa;
+  margin-bottom: 20px;
+}
+
+.otp-input {
+  width: 200px;         
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #333;
+  background:#aaa;
+  color: #fff;
+  text-align: center;
+  margin: 0 auto 20px auto; 
+  display: block;
+}
+
 .otp-box h2 {
   text-align: center;
   margin-bottom: 20px;
@@ -39,7 +69,7 @@
 .otp-btn {
   width: 100%;
   padding: 10px;
-  background: #27ae60;
+  background: #4a90e2;
   color: #fff;
   border: none;
   border-radius: 6px;

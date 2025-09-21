@@ -40,6 +40,9 @@ function Verification() {
     <div className="verification-page">
       <div className="verification-box">
         <h2>Forgot Password</h2>
+        <p className="subtext">
+          Enter your register number and email to reset your password.
+        </p>
         <form onSubmit={handleSubmit}>
           <label>Register Number</label>
           <input
