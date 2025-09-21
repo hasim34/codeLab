@@ -43,9 +43,10 @@ const executeCode = async (req, res) => {
     }
 
     const testCase = problemData.samples[0];
-    
+    const wrappedSource = buildWrapper(languageId, sourceCode, testCase, problemData.signature);
+
     const result = await Judge0Service.submitCode(
-      sourceCode,
+      wrappedSource,
       languageId,
       testCase.input
     );
@@ -88,10 +89,11 @@ const submitSolution = async (req, res) => {
 
     let passedTests = 0;
     const testResults = [];
+    const wrappedSource = buildWrapper(languageId, sourceCode, testCase, problemData.signature);
 
     for (const testCase of allTestCases) {
       const result = await Judge0Service.submitCode(
-        sourceCode,
+        wrappedSource,
         languageId,
         testCase.input
       );
@@ -109,13 +111,205 @@ const submitSolution = async (req, res) => {
         memory: result.memory || 0,
       });
     }
-    const status = passedTests === allTestCases.length? 'Accepted' : 'Wrong Answer';
-    res.json({status, passedTests, totalTests: allTestCases.length, testResults: testResults.slice(0, problemData.samples.length) });
-
+    const status =
+      passedTests === allTestCases.length ? "Accepted" : "Wrong Answer";
+    res.json({
+      status,
+      passedTests,
+      totalTests: allTestCases.length,
+      testResults: testResults.slice(0, problemData.samples.length),
+    });
   } catch (err) {
     console.error("Submission error: ", err);
     res.status(500).json({ error: error.message });
   }
 };
 
-module.exports = { getProblemData, executeCode, submitSolution };
+// buildWrapper.js
+const buildWrapper = (languageId, code, testCase, signature) => {
+  const funcName = signature.functionName || "solve";
+  const args = signature.parameters.map((p) => p.name).join(", ");
+
+  // helper to parse params depending on type
+  const parsePython = (p, i) => {
+    if (p.type.startsWith("List"))
+      return `${p.name} = ast.literal_eval(data[${i}])`;
+    if (p.type === "int") return `${p.name} = int(data[${i}])`;
+    if (p.type === "string") return `${p.name} = data[${i}]`;
+    return `${p.name} = data[${i}]`;
+  };
+
+  const parseJS = (p, i) => {
+    if (p.type.startsWith("List"))
+      return `const ${p.name} = JSON.parse(input[${i}]);`;
+    if (p.type === "int") return `const ${p.name} = parseInt(input[${i}], 10);`;
+    if (p.type === "string") return `const ${p.name} = input[${i}];`;
+    return `const ${p.name} = input[${i}];`;
+  };
+
+  switch (languageId) {
+    // ======================
+    // Python 3
+    // ======================
+    case 71: // Python 3
+      return `
+${code}
+
+if __name__ == "__main__":
+    import ast
+    data = """${testCase.input}""".strip().splitlines()
+    ${signature.parameters.map((p, i) => parsePython(p, i)).join("\n    ")}
+    print(${funcName}(${args}))
+`;
+
+    // ======================
+    // JavaScript (Node.js)
+    // ======================
+    case 63: // JavaScript (Node.js 12.x)
+      return `
+${code}
+
+const fs = require("fs");
+const input = fs.readFileSync(0, "utf-8").trim().split("\\n");
+${signature.parameters.map((p, i) => parseJS(p, i)).join("\n")}
+const res = ${funcName}(${args});
+console.log(res);
+`;
+
+    // ======================
+    // C (GCC)
+    // ======================
+    case 50: // C (GCC 9.2.0)
+      return `
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// user code
+${code}
+
+int main() {
+    char line[10000];
+    // read each parameter line
+${signature.parameters
+  .map((p, i) => {
+    if (p.type.startsWith("List")) {
+      return `
+    fgets(line, sizeof(line), stdin);
+    int ${p.name}[1000], ${p.name}_size = 0;
+    char *tok = strtok(line, "[, ]");
+    while (tok != NULL) {
+        ${p.name}[${p.name}_size++] = atoi(tok);
+        tok = strtok(NULL, "[, ]");
+    }`;
+    }
+    if (p.type === "int") {
+      return `    int ${p.name}; scanf("%d", &${p.name});`;
+    }
+    return `    char ${p.name}[1000]; fgets(${p.name}, sizeof(${p.name}), stdin);`;
+  })
+  .join("\n")}
+    // call function
+    // NOTE: user must implement function matching signature
+    // Example assumes return array of 2 ints
+    int res[2];
+    ${funcName}(${signature.parameters
+        .map((p) => {
+          if (p.type.startsWith("List")) return `${p.name}, ${p.name}_size`;
+          return p.name;
+        })
+        .join(", ")}, res);
+    printf("[%d,%d]\\n", res[0], res[1]);
+    return 0;
+}
+`;
+
+    // ======================
+    // C++ (GCC)
+    // ======================
+    case 54: // C++ (GCC 9.2.0)
+      return `
+#include <bits/stdc++.h>
+using namespace std;
+
+// user code
+${code}
+
+int main() {
+    string line;
+${signature.parameters
+  .map((p, i) => {
+    if (p.type.startsWith("List")) {
+      return `
+    getline(cin, line);
+    line.erase(remove(line.begin(), line.end(), '['), line.end());
+    line.erase(remove(line.begin(), line.end(), ']'), line.end());
+    stringstream ss(line);
+    vector<int> ${p.name};
+    int val; char ch;
+    while (ss >> val) {
+        ${p.name}.push_back(val);
+        ss >> ch;
+    }`;
+    }
+    if (p.type === "int") {
+      return `    int ${p.name}; cin >> ${p.name};`;
+    }
+    return `    string ${p.name}; getline(cin, ${p.name});`;
+  })
+  .join("\n")}
+    auto res = ${funcName}(${args});
+    // assumes vector<int> return
+    cout << "[";
+    for (size_t i = 0; i < res.size(); i++) {
+        cout << res[i];
+        if (i + 1 < res.size()) cout << ",";
+    }
+    cout << "]\\n";
+    return 0;
+}
+`;
+
+    // ======================
+    // Java
+    // ======================
+    case 62: // Java (OpenJDK 13)
+      return `
+import java.util.*;
+public class Main {
+    ${code}
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+${signature.parameters
+  .map((p, i) => {
+    if (p.type.startsWith("List")) {
+      return `
+        String line${i} = sc.nextLine().replaceAll("[\\\\[\\\\]]", "");
+        String[] parts${i} = line${i}.split(",");
+        int[] ${p.name} = new int[parts${i}.length];
+        for (int j = 0; j < parts${i}.length; j++) {
+            ${p.name}[j] = Integer.parseInt(parts${i}[j].trim());
+        }`;
+    }
+    if (p.type === "int") {
+      return `        int ${p.name} = Integer.parseInt(sc.nextLine().trim());`;
+    }
+    return `        String ${p.name} = sc.nextLine().trim();`;
+  })
+  .join("\n")}
+        int[] res = ${funcName}(${args});
+        System.out.println("[" + res[0] + "," + res[1] + "]");
+    }
+}
+`;
+
+    // ======================
+    // Default: no wrapping
+    // ======================
+    default:
+      return code;
+  }
+};
+
+module.exports = { getProblemData, executeCode, submitSolution, buildWrapper };
