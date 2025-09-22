@@ -69,7 +69,7 @@ export default function CodeEditor() {
       }
       try {
         const res = await axios.get(
-          `${import.meta.env.VITE_API_URLnode}/problems/subject/${subjectId}/problem/${problemId}`
+          `${import.meta.env.VITE_API_URL}/problems/subject/${subjectId}/problem/${problemId}`
         );
         setProblemData(res.data);
         setCode(generateStarterCode(language, res.data.signature || {}));
