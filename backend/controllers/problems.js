@@ -20,7 +20,8 @@ const getProblemDetails = (req, res) => {
             description: problemData.description,
             difficulty: problemData.difficulty,
             examples: problemData.examples,
-            constraints: problemData.constraints
+            constraints: problemData.constraints,
+            signature: problemData.signature
         };
         res.json(response);
     }catch(err){

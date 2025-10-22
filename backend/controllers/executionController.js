@@ -51,8 +51,9 @@ const executeCode = async (req, res) => {
       testCase.input
     );
 
-    const isCorrect =
-      result.stdout && result.stdout.trim() === testCase.output.trim();
+    const normalize = (s) => (s || "").replace(/\s+/g, "").trim();
+    const isCorrect = normalize(result.stdout) === normalize(testCase.output);
+
 
     const response = {
       stdout: result.stdout || "",
@@ -89,16 +90,18 @@ const submitSolution = async (req, res) => {
 
     let passedTests = 0;
     const testResults = [];
-    const wrappedSource = buildWrapper(languageId, sourceCode, testCase, problemData.signature);
 
     for (const testCase of allTestCases) {
+      const wrappedSource = buildWrapper(languageId, sourceCode, testCase, problemData.signature);
       const result = await Judge0Service.submitCode(
         wrappedSource,
         languageId,
         testCase.input
       );
-      const isCorrect =
-        result.stdout && result.stdout.trim() === testCase.output.trim();
+
+      const normalize = (s) => (s || "").replace(/\s+/g, "").trim();
+      const isCorrect = normalize(result.stdout) === normalize(testCase.output);
+
 
       if (isCorrect) passedTests++;
 
@@ -121,7 +124,7 @@ const submitSolution = async (req, res) => {
     });
   } catch (err) {
     console.error("Submission error: ", err);
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: err.message });
   }
 };
 
@@ -192,9 +195,9 @@ int main() {
     char line[10000];
     // read each parameter line
 ${signature.parameters
-  .map((p, i) => {
-    if (p.type.startsWith("List")) {
-      return `
+          .map((p, i) => {
+            if (p.type.startsWith("List")) {
+              return `
     fgets(line, sizeof(line), stdin);
     int ${p.name}[1000], ${p.name}_size = 0;
     char *tok = strtok(line, "[, ]");
@@ -202,23 +205,23 @@ ${signature.parameters
         ${p.name}[${p.name}_size++] = atoi(tok);
         tok = strtok(NULL, "[, ]");
     }`;
-    }
-    if (p.type === "int") {
-      return `    int ${p.name}; scanf("%d", &${p.name});`;
-    }
-    return `    char ${p.name}[1000]; fgets(${p.name}, sizeof(${p.name}), stdin);`;
-  })
-  .join("\n")}
+            }
+            if (p.type === "int") {
+              return `    int ${p.name}; scanf("%d", &${p.name});`;
+            }
+            return `    char ${p.name}[1000]; fgets(${p.name}, sizeof(${p.name}), stdin);`;
+          })
+          .join("\n")}
     // call function
     // NOTE: user must implement function matching signature
     // Example assumes return array of 2 ints
     int res[2];
     ${funcName}(${signature.parameters
-        .map((p) => {
-          if (p.type.startsWith("List")) return `${p.name}, ${p.name}_size`;
-          return p.name;
-        })
-        .join(", ")}, res);
+          .map((p) => {
+            if (p.type.startsWith("List")) return `${p.name}, ${p.name}_size`;
+            return p.name;
+          })
+          .join(", ")}, res);
     printf("[%d,%d]\\n", res[0], res[1]);
     return 0;
 }
@@ -238,9 +241,9 @@ ${code}
 int main() {
     string line;
 ${signature.parameters
-  .map((p, i) => {
-    if (p.type.startsWith("List")) {
-      return `
+          .map((p, i) => {
+            if (p.type.startsWith("List")) {
+              return `
     getline(cin, line);
     line.erase(remove(line.begin(), line.end(), '['), line.end());
     line.erase(remove(line.begin(), line.end(), ']'), line.end());
@@ -251,13 +254,13 @@ ${signature.parameters
         ${p.name}.push_back(val);
         ss >> ch;
     }`;
-    }
-    if (p.type === "int") {
-      return `    int ${p.name}; cin >> ${p.name};`;
-    }
-    return `    string ${p.name}; getline(cin, ${p.name});`;
-  })
-  .join("\n")}
+            }
+            if (p.type === "int") {
+              return `    int ${p.name}; cin >> ${p.name};`;
+            }
+            return `    string ${p.name}; getline(cin, ${p.name});`;
+          })
+          .join("\n")}
     auto res = ${funcName}(${args});
     // assumes vector<int> return
     cout << "[";
@@ -282,22 +285,22 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 ${signature.parameters
-  .map((p, i) => {
-    if (p.type.startsWith("List")) {
-      return `
+          .map((p, i) => {
+            if (p.type.startsWith("List")) {
+              return `
         String line${i} = sc.nextLine().replaceAll("[\\\\[\\\\]]", "");
         String[] parts${i} = line${i}.split(",");
         int[] ${p.name} = new int[parts${i}.length];
         for (int j = 0; j < parts${i}.length; j++) {
             ${p.name}[j] = Integer.parseInt(parts${i}[j].trim());
         }`;
-    }
-    if (p.type === "int") {
-      return `        int ${p.name} = Integer.parseInt(sc.nextLine().trim());`;
-    }
-    return `        String ${p.name} = sc.nextLine().trim();`;
-  })
-  .join("\n")}
+            }
+            if (p.type === "int") {
+              return `        int ${p.name} = Integer.parseInt(sc.nextLine().trim());`;
+            }
+            return `        String ${p.name} = sc.nextLine().trim();`;
+          })
+          .join("\n")}
         int[] res = ${funcName}(${args});
         System.out.println("[" + res[0] + "," + res[1] + "]");
     }

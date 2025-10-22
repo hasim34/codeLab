@@ -222,7 +222,7 @@ export default function CodeEditor() {
           </div>
         </div>
 
-        <div onKeyDown={handleKeyDown} tabIndex={0} style={{ height: "600px" }}>
+        <div onKeyDown={handleKeyDown} tabIndex={0} style={{ height: "340px" }}>
           <AceEditor
             mode={languageToMode[language]}
             theme="monokai"
@@ -233,21 +233,20 @@ export default function CodeEditor() {
             width="100%"
             height="100%"
             setOptions={{
-              enableBasicAutocompletion: false, // Disabled
-              enableLiveAutocompletion: false,  // Disabled
-              enableSnippets: false,            // Disabled
-              tabSize: 4,                      // Indent size
-              useSoftTabs: true,               // Spaces for tabs
-              showGutter: true,                // Line numbers
-              showPrintMargin: false,          // No vertical ruler
-              wrapEnabled: true,               // Word wrap
+              enableBasicAutocompletion: false, // optional: true if you want autocomplete
+              enableLiveAutocompletion: false,
+              enableSnippets: false,
+              tabSize: 4,
+              useSoftTabs: true,
+              showGutter: true,
+              showPrintMargin: false,
+              wrap: true, // <-- FIXED: use 'wrap', not 'wrapEnabled'
               fontSize: 14,
               fontFamily: "monospace",
-              autoIndent: true,                // Auto-indent on Enter
-              enableAutoIndent: true,          // Ensure indentation
-              highlightActiveLine: true,       // Highlight current line
-              showLineNumbers: true,           // Line numbers
+              highlightActiveLine: true,
+              showLineNumbers: true,
             }}
+            
           />
         </div>
 
