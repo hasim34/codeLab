@@ -1,3 +1,4 @@
+
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
@@ -20,7 +21,7 @@ const subjectRoutes = require("./routes/subjectRoutes");
 // const submissionRoutes = require("./routes/submissionRoutes");
 // const userRoutes = require("./routes/userRoutes");
 
-app.use("/api/subjects", subjectRoutes);
+app.use("/api/subjects",subjectRoutes);
  app.use("/api/auth", authRoutes);
  app.use("/api/problems", problemRoutes);
 // app.use("/api/submissions", submissionRoutes);
