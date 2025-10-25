@@ -40,7 +40,7 @@ const Login = () => {
 
     setError(""); // Clear errors
     alert("Successfully logged in. Let's get started");
-    navigate("/verification"); // Navigate to verification or dashboard
+    navigate("/dashboard"); // Navigate to verification or dashboard
   };
 
   return (
@@ -91,7 +91,7 @@ const Login = () => {
             {error && <p className="error">{error}</p>}
 
             <p className="forgot-link">
-              <Link to="/verification">Forgot password?</Link>
+              <Link to="/forgot-password">Forgot password?</Link>
             </p>
 
             <button type="submit" className="signin-btn">Sign In</button>
