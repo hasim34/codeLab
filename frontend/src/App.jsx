@@ -6,34 +6,31 @@ import Dashboard from "./components/dashboard/Dashboard";
 import Experiments from "./components/experiment/Experiments";
 import CodeEditor from "./components/codeEditor/CodeEditor";
 import Profile from "./components/profile/Profile";
-import Experiment from "./components/experiment/Experiments";
 
-
+import { LoaderProvider } from "./context/LoaderContext";
+import "./context/loader.css";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        {/* Public Routes */}
-        <Route path="/" element={<Login />} />
-        <Route path="/login" element={<Login />} />  
-        <Route path="/register" element={<Register />} />
+    <LoaderProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
 
-        {/* Protected / Dashboard Routes */}
-        <Route path="/dashboard" element={<Layout />}>
-          {/* Default child route → /dashboard */}
-          <Route index element={<Dashboard />} />
-          
-          {/* Nested routes */}
-          <Route path="subject/:id" element={<Experiments />} />
-          <Route path="subject/:id/editor/:experimentId" element={<CodeEditor />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="experiment" element={<Experiment />} />  
-          {/* <Route path="/problems/:id" element={<ProblemDetail />} /> */}
-
-        </Route>
-      </Routes>
-    </Router>
+          <Route path="/dashboard" element={<Layout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="subject/:id" element={<Experiments />} />
+            <Route
+              path="subject/:id/editor/:experimentId"
+              element={<CodeEditor />}
+            />
+            <Route path="profile" element={<Profile />} />
+          </Route>
+        </Routes>
+      </Router>
+    </LoaderProvider>
+>>>>>>> 1a8df49f2c292baa0a7a4af443e9d42a2f6f2b69
   );
 }
 

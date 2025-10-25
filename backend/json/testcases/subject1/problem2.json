@@ -1,0 +1,43 @@
+{
+  "problem_id": 2,
+  "subject_id": 1,
+  "title": "Reverse Linked List",
+  "description": "Given the head of a singly linked list, reverse the list, and return the reversed list.",
+  "difficulty": "medium",
+  "examples": [
+    {
+      "input": "[1,2,3,4,5]",
+      "output": "[5,4,3,2,1]",
+      "explanation": "The linked list is reversed from 1→2→3→4→5 to 5→4→3→2→1."
+    },
+    {
+      "input": "[1,2]",
+      "output": "[2,1]",
+      "explanation": "The linked list is reversed from 1→2 to 2→1."
+    }
+  ],
+  "constraints": [
+    "The number of nodes in the list is the range [0, 5000]",
+    "-5000 <= Node.val <= 5000"
+  ],
+  "samples": [
+    {
+      "input": "[1,2,3,4,5]",
+      "output": "[5,4,3,2,1]"
+    },
+    {
+      "input": "[1,2]",
+      "output": "[2,1]"
+    }
+  ],
+  "hidden": [
+    {
+      "input": "[]",
+      "output": "[]"
+    },
+    {
+      "input": "[1]",
+      "output": "[1]"
+    }
+  ]
+}

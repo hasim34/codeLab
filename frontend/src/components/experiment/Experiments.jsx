@@ -86,6 +86,28 @@ function Experiments() {
         <span>›</span>
         <span>{subjectTitle}</span>
 
+
+      <div className="experiment-list">
+        {experiments.map((exp) => (
+          <div key={exp.id} className="experiment-card">
+            <h3>{exp.title}</h3>
+            <p>Level: {exp.level}</p>
+            <div className="progress-bar">
+              <div
+                className="progress-fill"
+                style={{ width: `${exp.progress}%` }}
+              ></div>
+            </div>
+            <NavLink
+              to={`/dashboard/subject/${id}/editor/${exp.id}`}
+              className="continue-btn"
+              state={{subjectId: id, problemId: exp.id}}
+            >
+              Continue
+            </NavLink>
+          </div>
+        ))}
+
       </div>
 
       <h2>{subjectTitle}</h2>

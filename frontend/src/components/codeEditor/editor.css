@@ -112,3 +112,52 @@
   resize: none;
   outline: none;
 }
+
+/* editor.css */
+.ace_editor {
+  background-color: #1d273b !important; /* Matches custom-dark background */
+  color: #fefefe !important; /* Foreground text */
+  font-family: monospace !important;
+  font-size: 14px !important;
+}
+
+.ace_gutter {
+  background-color: #1d273b !important; /* Gutter matches editor */
+  color: #6b7280 !important; /* Line numbers */
+}
+
+.ace_active-line {
+  background-color: #2a3550 !important; /* Highlighted line */
+}
+
+.ace_cursor {
+  color: #0ea5e9 !important; /* Cursor */
+}
+
+.ace_keyword {
+  color: #0ea5e9 !important; /* Keywords (e.g., if, for, def) */
+  font-weight: bold !important;
+}
+
+.ace_string {
+  color: #f7a600 !important; /* Strings */
+}
+
+.ace_comment {
+  color: #6b7280 !important; /* Comments */
+  font-style: italic !important;
+}
+
+.difficulty-badge {
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.difficulty-badge.easy {
+  background-color: #22c55e;
+}
+.difficulty-badge.medium {
+  background-color: #f7a600;
+}
+.difficulty-badge.hard {
+  background-color: #ef4444;
+}

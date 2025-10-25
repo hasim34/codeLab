@@ -10,8 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "axios": "^1.12.1",
+
+    "ace-builds": "^1.43.3",
+    "axios": "^1.11.0",
+
     "react": "^19.1.1",
+    "react-ace": "^14.0.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.8.2"
   },
