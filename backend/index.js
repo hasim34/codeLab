@@ -9,8 +9,10 @@ app.use(cors());
 app.use(express.json());
 
 const subjectRoutes = require("./routes/subjectRoutes");
+
 const authRoutes = require("./routes/authRoutes");
 const problemRoutes = require("./routes/problemRoutes");
+
 // const submissionRoutes = require("./routes/submissionRoutes");
 // const userRoutes = require("./routes/userRoutes");
 
@@ -19,7 +21,10 @@ const verifyToken = require("./middleware/authMiddleware");
 
 app.use("/api/auth", authRoutes);
 app.use("/api/subjects", subjectRoutes);
+
 app.use("/api/problems", problemRoutes);
+
+
 // app.use("/api/submissions", submissionRoutes);
 // app.use("/api/users", userRoutes);
 
