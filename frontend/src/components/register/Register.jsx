@@ -1,12 +1,8 @@
-<<<<<<< HEAD
+
 import React from 'react';
 import './Register.css';
 import { useNavigate } from "react-router-dom";
-=======
-import React, { useState } from "react";
-import "./register.css";
-import codelabLogo from "./codelab-logo.png"; // your logo image
->>>>>>> b7845938dc159ac1abf9335c801c4bfb5c378068
+
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
