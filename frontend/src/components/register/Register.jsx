@@ -1,5 +1,6 @@
 import React from 'react';
 import './Register.css';
+import { useNavigate } from "react-router-dom";
 
 function Register() {
     return (
@@ -107,3 +108,5 @@ function Register() {
 }
 
 export default Register;
+
+

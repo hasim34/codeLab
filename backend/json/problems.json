@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1,
+    "title": "Two Sum Problem",
+    "level": "Easy",
+    "description": "Given an array of integers and a target sum, find two numbers that add up to the target.",
+    "tags": ["Arrays", "Hash Table"],
+    "time": "15 min",
+    "progress": 100,
+    "status": "Accepted",
+    "subjectId": 1
+  },
+  {
+    "id": 2,
+    "title": "Reverse Linked List",
+    "level": "Medium",
+    "description": "Implement an algorithm to reverse a singly linked list iteratively and recursively.",
+    "tags": ["Linked List", "Recursion"],
+    "time": "30 min",
+    "progress": 60,
+    "status": "In Progress",
+    "subjectId": 1
+  }
+]

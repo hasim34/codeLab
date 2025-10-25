@@ -9,12 +9,28 @@ function Dashboard() {
 
   const fetchSubject = async() => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/subjects`);
+      // 1. Token eduthu vaanga (login apram localStorage la save panniruppom)
+      const token = localStorage.getItem("token");
+
+      // 2. API ku token attach pannunga
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/subjects`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
       setSubjects(res.data);
     } catch (err) {
-      console.error("Error fetching subjects: ",err);
+      console.error("Error fetching subjects: ", err);
     }
   };
+
+  //   try {
+  //     const res = await axios.get(`${import.meta.env.VITE_API_URL}/subjects`);
+  //     setSubjects(res.data);
+  //   } catch (err) {
+  //     console.error("Error fetching subjects: ",err);
+  //   }
+  // };
+
 
   useEffect( () => {
     fetchSubject();

@@ -1,0 +1,225 @@
+/* .problem-card {
+  background: #1f2937;
+  padding: 20px;
+  margin: 15px 0;
+  border-radius: 8px;
+  color: white;
+}
+
+.problem-header h3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.difficulty.easy {
+  background: green;
+  padding: 2px 8px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+}
+
+.difficulty.medium {
+  background: orange;
+  padding: 2px 8px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+}
+
+.tags {
+  margin-top: 10px;
+}
+
+.tag {
+  background: #374151;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 5px;
+  font-size: 0.75rem;
+}
+
+.problem-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.progress-bar {
+  background: #374151;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-inner {
+  height: 100%;
+  background: #3b82f6;
+}
+
+button.continue {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button.review {
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+} */
+
+body {
+  background-color: #0f172a; /* dark background */
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+}
+
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px;
+  height: 80vh; /* To allow scroll */
+  overflow-y: auto;
+}
+
+/* Scrollbar customization (optional) */
+.container::-webkit-scrollbar {
+  width: 8px;
+}
+.container::-webkit-scrollbar-thumb {
+  background-color: #475569;
+  border-radius: 10px;
+}
+.container::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+/* Card styling */
+.problem-card {
+  background: #1e293b; /* dark card background */
+  border-radius: 14px;
+  padding: 20px;
+  margin: 15px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.problem-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Header (title + level) */
+.problem-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.problem-header h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #f1f5f9;
+}
+
+.level {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #fff;
+  text-transform: capitalize;
+}
+
+/* Difficulty colors */
+.level.easy {
+  background-color: #22c55e;
+}
+.level.medium {
+  background-color: #f59e0b;
+}
+.level.hard {
+  background-color: #ef4444;
+}
+
+/* Description */
+.problem-desc {
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  margin-bottom: 12px;
+}
+
+/* Tags */
+.tags {
+  margin-bottom: 15px;
+}
+.tag {
+  display: inline-block;
+  background: #e0f2fe;
+  color: #0369a1;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 12px;
+  margin-right: 6px;
+  margin-bottom: 6px;
+}
+
+/* Footer */
+.problem-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.problem-footer .time {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #94a3b8;
+}
+
+/* Progress bar */
+.problem-footer progress {
+  flex: 1;
+  height: 10px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.problem-footer progress::-webkit-progress-bar {
+  background-color: #334155;
+}
+.problem-footer progress::-webkit-progress-value {
+  background-color: #3b82f6;
+}
+.problem-footer progress::-moz-progress-bar {
+  background-color: #3b82f6;
+}
+
+/* Action button */
+.action-btn {
+  padding: 6px 14px;
+  background: #3b82f6;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.action-btn:hover {
+  background: #2563eb;
+}
