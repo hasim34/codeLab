@@ -41,12 +41,103 @@
 // export default Experiments;
 
 
+// import { useEffect, useState } from "react";
+// import { useParams, Link } from "react-router-dom";
+// import axios from "axios";
+// import ProblemCard from "./ProblemCard";
+// import "./experiments.css";
+
+
+// function Experiments() {
+//   const { id } = useParams();
+//   const [problems, setProblems] = useState([]);
+//   const [subjectTitle, setSubjectTitle] = useState("Loading...");
+
+//   useEffect(() => {
+//     const fetchProblems = async () => {
+//       try {
+//         const res = await axios.get(
+//           `${import.meta.env.VITE_API_URL}/problems/${id}`
+//         );
+
+//         // 🔹 Check API format
+//         if (Array.isArray(res.data)) {
+//           setProblems(res.data);
+//           setSubjectTitle("Data Structures & Algorithms Lab"); // default
+//         } else {
+//           setProblems(res.data.problems || []);
+//           setSubjectTitle(res.data.subjectTitle || "Subject");
+//         }
+//       } catch (err) {
+//         console.error("Error fetching problems:", err);
+//       }
+//     };
+//     fetchProblems();
+//   }, [id]);
+
+//   // ✅ Safely calculate progress
+//   const solvedCount = problems ? problems.filter(p => p.progress === 100).length : 0;
+
+//   return (
+//     <div className="experiments">
+//       {/* Breadcrumb */}
+//       <div className="breadcrumb">
+//         <Link to="/dashboard">Dashboard</Link>
+//         <span>›</span>
+//         <span>{subjectTitle}</span>
+
+
+//       <div className="experiment-list">
+//         {experiments.map((exp) => (
+//           <div key={exp.id} className="experiment-card">
+//             <h3>{exp.title}</h3>
+//             <p>Level: {exp.level}</p>
+//             <div className="progress-bar">
+//               <div
+//                 className="progress-fill"
+//                 style={{ width: `${exp.progress}%` }}
+//               ></div>
+//             </div>
+//             <NavLink
+//               to={`/dashboard/subject/${id}/editor/${exp.id}`}
+//               className="continue-btn"
+//               state={{subjectId: id, problemId: exp.id}}
+//             >
+//               Continue
+//             </NavLink>
+//           </div>
+//         ))}
+
+//       </div>
+
+//       <h2>{subjectTitle}</h2>
+//       <p>Master fundamental data structures and algorithms through hands-on programming</p>
+
+//       {/* Progress */}
+//       <div className="subject-progress">
+//         <span>
+//           Progress: {solvedCount}/{problems?.length || 0}
+//         </span>
+//         <progress value={solvedCount} max={problems?.length || 1}></progress>
+//       </div>
+
+//       {/* Problems list */}
+//       {(!problems || problems.length === 0) ? (
+//         <p>No problems found for this subject</p>
+//       ) : (
+//         problems.map((prob) => <ProblemCard key={prob.id} problem={prob} />)
+//       )}
+//     </div>
+//   );
+// }
+// export default Experiments;
+
+
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, NavLink } from "react-router-dom";
 import axios from "axios";
 import ProblemCard from "./ProblemCard";
 import "./experiments.css";
-
 
 function Experiments() {
   const { id } = useParams();
@@ -60,10 +151,9 @@ function Experiments() {
           `${import.meta.env.VITE_API_URL}/problems/${id}`
         );
 
-        // 🔹 Check API format
         if (Array.isArray(res.data)) {
           setProblems(res.data);
-          setSubjectTitle("Data Structures & Algorithms Lab"); // default
+          setSubjectTitle("Data Structures & Algorithms Lab");
         } else {
           setProblems(res.data.problems || []);
           setSubjectTitle(res.data.subjectTitle || "Subject");
@@ -75,8 +165,9 @@ function Experiments() {
     fetchProblems();
   }, [id]);
 
-  // ✅ Safely calculate progress
-  const solvedCount = problems ? problems.filter(p => p.progress === 100).length : 0;
+  const solvedCount = problems
+    ? problems.filter((p) => p.progress === 100).length
+    : 0;
 
   return (
     <div className="experiments">
@@ -85,33 +176,13 @@ function Experiments() {
         <Link to="/dashboard">Dashboard</Link>
         <span>›</span>
         <span>{subjectTitle}</span>
-
-
-      <div className="experiment-list">
-        {experiments.map((exp) => (
-          <div key={exp.id} className="experiment-card">
-            <h3>{exp.title}</h3>
-            <p>Level: {exp.level}</p>
-            <div className="progress-bar">
-              <div
-                className="progress-fill"
-                style={{ width: `${exp.progress}%` }}
-              ></div>
-            </div>
-            <NavLink
-              to={`/dashboard/subject/${id}/editor/${exp.id}`}
-              className="continue-btn"
-              state={{subjectId: id, problemId: exp.id}}
-            >
-              Continue
-            </NavLink>
-          </div>
-        ))}
-
       </div>
 
       <h2>{subjectTitle}</h2>
-      <p>Master fundamental data structures and algorithms through hands-on programming</p>
+      <p>
+        Master fundamental data structures and algorithms through hands-on
+        programming
+      </p>
 
       {/* Progress */}
       <div className="subject-progress">
@@ -125,9 +196,30 @@ function Experiments() {
       {(!problems || problems.length === 0) ? (
         <p>No problems found for this subject</p>
       ) : (
-        problems.map((prob) => <ProblemCard key={prob.id} problem={prob} />)
+        <div className="experiment-list">
+          {problems.map((exp) => (
+            <div key={exp.id} className="experiment-card">
+              <h3>{exp.title}</h3>
+              <p>Level: {exp.level}</p>
+              <div className="progress-bar">
+                <div
+                  className="progress-fill"
+                  style={{ width: `${exp.progress}%` }}
+                ></div>
+              </div>
+              <NavLink
+                to={`/dashboard/subject/${id}/editor/${exp.id}`}
+                className="continue-btn"
+                state={{ subjectId: id, problemId: exp.id }}
+              >
+                Continue
+              </NavLink>
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );
 }
+
 export default Experiments;

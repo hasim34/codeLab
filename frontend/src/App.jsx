@@ -30,7 +30,7 @@ function App() {
         </Routes>
       </Router>
     </LoaderProvider>
->>>>>>> 1a8df49f2c292baa0a7a4af443e9d42a2f6f2b69
+
   );
 }
 
