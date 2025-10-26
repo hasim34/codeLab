@@ -5,7 +5,9 @@ const problemsController = require('../controllers/problems');
 const {getProblemsBySubject} = require('../controllers/problemsController');
 
 router.get('/subject/:subjectId/problem/:problemId', problemsController.getProblemDetails);
-router.get("/:id/problems", getProblemsBySubject);
+// router.get("/:id/problems", getProblemsBySubject);
+router.get("/:id", getProblemsBySubject);
+
 
 module.exports = router ;
 

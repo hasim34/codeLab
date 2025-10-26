@@ -6,7 +6,32 @@ const pool = require("../config/db");
 const router = express.Router();
 const SECRET_KEY = process.env.JWT_SECRET || "mysecretkey123";
 
-// 👉 Register
+// // 👉 Register
+// router.post("/register", async (req, res) => {
+//   const { name, roll_number, email, phone, password } = req.body;
+
+//   if (!name || !roll_number || !email || !phone || !password) {
+//     return res.status(400).json({ message: "All fields are required" });
+//   }
+
+//   try {
+//     // Hash password
+//     const hashedPassword = await bcrypt.hash(password, 10);
+
+//     const [result] = await pool.query(
+//       `INSERT INTO users 
+//       (name, roll_number, email, phone, password,created_at, updated_at) 
+//       VALUES (?, ?, ?, ?,  ?, NOW(), NOW())`,
+//       [name, roll_number, email, phone, hashedPassword]
+//     );
+
+//     res.json({ message: "User registered successfully", userId: result.insertId });
+//   } catch (err) {
+//     console.error("Register Error:", err);
+//     res.status(500).json({ message: "DB error" });
+//   }
+// });
+
 router.post("/register", async (req, res) => {
   const { name, roll_number, email, phone, password } = req.body;
 
@@ -18,11 +43,12 @@ router.post("/register", async (req, res) => {
     // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    // Insert into users with extra columns: role, year, semester
     const [result] = await pool.query(
       `INSERT INTO users 
-      (name, roll_number, email, phone, password,created_at, updated_at) 
-      VALUES (?, ?, ?, ?,  ?, NOW(), NOW())`,
-      [name, roll_number, email, phone, hashedPassword]
+      (name, roll_number, email, phone, password, role, year, semester, created_at, updated_at) 
+      VALUES (?, ?, ?, ?, ?, 'student', ?, ?, NOW(), NOW())`,
+      [name, roll_number, email, phone, hashedPassword, 'student', null, null] // default role and null year/semester
     );
 
     res.json({ message: "User registered successfully", userId: result.insertId });
@@ -31,6 +57,7 @@ router.post("/register", async (req, res) => {
     res.status(500).json({ message: "DB error" });
   }
 });
+
 
 // 👉 Login
 router.post("/login", async (req, res) => {
