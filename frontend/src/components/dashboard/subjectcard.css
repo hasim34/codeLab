@@ -2,28 +2,126 @@
   background: #1e293b;
   padding: 1.5rem;
   border-radius: 10px;
+  margin-bottom: 1rem;
 }
 
-.progress-bar {
-  background: #334155;
-  border-radius: 5px;
-  height: 8px;
-  margin: 10px 0;
+.card-content {
+  margin-bottom: 1rem;
 }
 
-.progress-fill {
-  background: #3b82f6;
-  height: 100%;
-  border-radius: 5px;
+/* .description-row {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 0.5rem;
 }
+
+.description-row p {
+  flex: 1;
+  margin: 0;
+  color: #d1d5db;
+} */
 
 .open-btn {
-  margin-top: 10px;
-  padding: 0.5rem 1rem;
+  margin: 0;
   border: none;
   background: #3b82f6;
-  text-decoration: none;    
+  text-decoration: none;
   color: white;
   border-radius: 5px;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+}
+
+.admin-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.edit-btn {
+  background-color: #1d56f2ff;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 80px;
+}
+
+.delete-btn {
+  background-color: #FF4444;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 80px;
+}
+
+.delete-confirm-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.delete-confirm {
+  background-color: #1e293b;
+  padding: 20px;
+  border-radius: 10px;
+  color: #fff;
+  width: 300px;
+  text-align: center;
+}
+
+.confirm-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.cancel-btn {
+  background-color: #657786;
+  color: #fff;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.confirm-btn {
+  background-color: #FF4444;
+  color: #fff;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Hide progress-bar related styles since they're not used */
+.progress-bar,
+.progress-fill {
+  display: none;
+}
+
+.content-row {
+  display: flex;
+  flex-direction: column; /* stack description and button vertically */
+  align-items: center;    /* center them horizontally */
+}
+
+.description {
+  margin-top: 0; /* removes only the top margin */
+  margin-bottom: 1rem; /* optional spacing below */
+  color: #d1d5db;
 }

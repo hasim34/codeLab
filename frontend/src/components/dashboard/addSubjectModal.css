@@ -1,0 +1,139 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(3px);
+}
+
+.modal-container {
+  background-color: #15202b;
+  color: #fff;
+  width: 500px;
+  padding: 22px 26px;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  animation: fadeIn 0.25s ease;
+}
+
+.modal-header {
+  text-align: left;
+  margin-bottom: 12px;
+}
+
+.modal-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.modal-subtitle {
+  color: #aab8c2;
+  font-size: 0.92rem;
+  margin-bottom: 10px;
+}
+
+.input-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.half-width {
+  flex: 1;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+
+.input-group label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #aab8c2;
+  margin-bottom: 6px;
+}
+
+.input-group small {
+  font-size: 0.8rem;
+  color: #8899a6;
+  margin-top: 5px;
+}
+
+.input-group input,
+.input-group textarea {
+  background-color: #22344d;
+  color: #fff;
+  border: 1px solid #2e4055;
+  border-radius: 6px;
+  padding: 9px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border 0.2s ease;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+  border: 1px solid #1da1f2;
+}
+
+.input-group textarea {
+  resize: none;
+  height: 75px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+  gap: 10px;
+}
+
+.cancel-btn,
+.create-btn {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cancel-btn {
+  background-color: #657786;
+  color: #fff;
+}
+
+.cancel-btn:hover {
+  background-color: #7a8fa5;
+}
+
+.create-btn {
+  background-color: #1da1f2;
+  color: #fff;
+}
+
+.create-btn:hover {
+  transform: scale(1.05);
+}
+
+.input-sub {
+    width: 90%;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

@@ -2,6 +2,7 @@
   {
     "id": 1,
     "title": "Data Structures & Algorithms Lab",
+    "code": "22CSC41",
     "description": "Learn fundamental data structures and algorithms.",
     "completed": 8,
     "total": 15
@@ -9,6 +10,7 @@
   {
     "id": 2,
     "title": "Database Management Lab",
+    "code": "22CSC52",
     "description": "Design and implement databases using SQL and NoSQL.",
     "completed": 6,
     "total": 12
@@ -16,9 +18,17 @@
   {
     "id": 3,
     "title": "Web Development Lab",
+    "code": "22CSC73",
     "description": "Build dynamic websites and web applications.",
     "completed": 10,
     "total": 20
+  },
+  {
+    "id": 4,
+    "title": "sdf",
+    "code": "222ddd",
+    "description": "hi hello ",
+    "completed": 0,
+    "total": 0
   }
-  
 ]
