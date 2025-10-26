@@ -47,7 +47,7 @@ router.post("/register", async (req, res) => {
     const [result] = await pool.query(
       `INSERT INTO users 
       (name, roll_number, email, phone, password, role, year, semester, created_at, updated_at) 
-      VALUES (?, ?, ?, ?, ?, 'student', ?, ?, NOW(), NOW())`,
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())`,
       [name, roll_number, email, phone, hashedPassword, 'student', null, null] // default role and null year/semester
     );
 
