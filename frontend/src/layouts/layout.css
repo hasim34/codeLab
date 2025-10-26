@@ -1,4 +1,4 @@
-.content {
+/* .content {
   background: #0f172a;
   min-height: 92.2vh;
 }
@@ -56,4 +56,116 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
+} */
+
+
+
+
+
+
+
+/* layout.css */
+
+/* Whole page background */
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background-color: #0a1628; /* Deep navy blue */
+  color: #e6edf3; /* Light text */
+}
+
+/* Top Navigation Bar */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #0d1b2a; /* Dark blue */
+  padding: 10px 20px;
+  border-bottom: 1px solid #1f2a40; /* Subtle border */
+}
+
+/* Logo */
+.topbar-logo {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 18px;
+  color: #e6edf3;
+}
+
+.topbar-logo-icon {
+  background: #007bff; /* Bright blue */
+  color: white;
+  font-size: 16px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  margin-right: 8px;
+}
+
+.topbar-logo-text {
+  color: #e6edf3;
+}
+
+/* Nav Links */
+.topbar-nav-links {
+  display: flex;
+  gap: 25px;
+}
+
+.topbar-nav-links a {
+  color: #9baec8; /* Muted blue-gray */
+  text-decoration: none;
+  font-size: 15px;
+  transition: color 0.2s;
+}
+
+.topbar-nav-links a.active,
+.topbar-nav-links a:hover {
+  color: #ffffff; /* Highlight white */
+}
+
+/* Right Icons */
+.topbar-right-icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.topbar-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #1f2a40;
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  background-color: #0d1b2a; /* Dark blue bar */
+  border-bottom: 1px solid #1f2a40;
+  font-size: 14px;
+}
+
+.breadcrumbs a {
+  color: #9baec8;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.breadcrumbs a:hover {
+  color: #ffffff;
+}
+
+.breadcrumbs span {
+  margin: 0 8px;
+  color: #9baec8;
+}
+
+/* Page Content */
+.content {
+  padding: 20px;
+  background-color: #0a1628; /* Deep navy */
+  min-height: calc(100vh - 100px);
 }

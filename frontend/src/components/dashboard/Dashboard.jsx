@@ -9,7 +9,11 @@ function Dashboard() {
 
   const fetchSubject = async() => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/subjects`);
+      console.log(import.meta.env.VITE_API_URL);
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/subjects`,{
+        withCredentials:true
+        
+      });
       setSubjects(res.data);
     } catch (err) {
       console.error("Error fetching subjects: ",err);
