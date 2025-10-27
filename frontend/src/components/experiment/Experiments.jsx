@@ -26,7 +26,7 @@ function Experiments() {
 
   const fetchExperiments = async () => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/problems/${id}/problems`, { withCredentials: true });
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/problems/${id}`, { withCredentials: true });
       setExperiments(res.data);
     } catch (err) {
       console.error("Error fetching experiments:", err);
@@ -44,7 +44,7 @@ function Experiments() {
   const handleEdit = async (problemId) => {
     try {
       // Fetch detailed data
-      const detailRes = await axios.get(`${import.meta.env.VITE_API_URL}/problems/${id}/${problemId}`, { withCredentials: true });
+      const detailRes = await axios.get(`${import.meta.env.VITE_API_URL}/problems/subject/${id}/problem/${problemId}`, { withCredentials: true });
       const { description, examples, signature, samples, hidden } = detailRes.data;
       const exp = experiments.find(e => e.id === problemId);
       setEditingProblem({ id: problemId, title: exp.title, level: exp.level, description, examples, signature, samples, hidden });

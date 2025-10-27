@@ -1,7 +1,7 @@
 const path = require("path");
 const fs = require("fs").promises;
 
-const experimentsFile = path.join(__dirname, "../json/experiments.json");
+const experimentsFile = path.join(__dirname, "../json/experiment.json");
 const testcasesDir = path.join(__dirname, "../json/testcases");
 
 const getProblemsBySubject = async (req, res) => {

@@ -10,7 +10,7 @@ const {getProblemsBySubject, addProblem, updateProblem, deleteProblem} = require
 // };
 
 router.get('/subject/:subjectId/problem/:problemId', problemsController.getProblemDetails);
-router.get("/:id/problems", getProblemsBySubject);
+router.get("/:id", getProblemsBySubject);
 
 router.post("/:subjectId", addProblem);
 router.put("/:subjectId/:problemId", updateProblem);
