@@ -1,5 +1,7 @@
 .subject-page {
-  padding: 2rem;
+  padding-left: 2rem;
+  padding-bottom: 2rem;
+  padding-right: 2rem;
   color: white;
 }
 
@@ -36,4 +38,40 @@
   background: #3b82f6;
   color: white;
   text-decoration: none;
+}
+
+.add-experiment-btn {
+  background: #1d9bf0;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.experiment-card .admin-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.experiment-card .edit-btn,
+.experiment-card .delete-btn {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.experiment-card .edit-btn {
+  background: #1d9bf0;
+  color: #fff;
+}
+
+.experiment-card .delete-btn {
+  background: #f4212e;
+  color: #fff;
 }
