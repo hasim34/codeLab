@@ -1,0 +1,33 @@
+{
+  "problem_id": 6,
+  "subject_id": 1,
+  "title": "Longest Substring Without Repeating Characters",
+  "description": "Given a string s, find the length of the longest substring without repeating characters.",
+  "difficulty": "medium",
+  "examples": [
+    {
+      "input": "\\\"abcabcbb\\\"",
+      "target": "",
+      "output": "3",
+      "explanation": "The answer is 'abc', with the length of 3."
+    },
+    {
+      "input": "\\\"bbbbb\\\"",
+      "target": "",
+      "output": "1",
+      "explanation": "The answer is 'b', with the length of 1."
+    }
+  ],
+  "signature": {
+    "functionName": "solve",
+    "parameters": [
+      {
+        "name": "s",
+        "type": "str"
+      }
+    ],
+    "returnType": "int"
+  },
+  "samples": [],
+  "hidden": []
+}

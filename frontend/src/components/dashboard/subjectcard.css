@@ -125,3 +125,11 @@
   margin-bottom: 1rem; /* optional spacing below */
   color: #d1d5db;
 }
+
+/* ADDED: For subject list page (assuming similar structure to experiments) */
+.subject-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1; /* Grow to fill available space */
+}

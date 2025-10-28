@@ -96,14 +96,14 @@ function Experiments() {
 
   return (
     <div className="subject-page">
+      <div className="subject-admin-button">
       <h2>Subject {id} Problems</h2>
-      <p>Practice and master the problems for this subject.</p>
-
       {isAdmin && (
         <button onClick={handleAdd} className="add-experiment-btn">
           + Add Experiment
         </button>
-      )}
+      )}</div>
+      <p>Practice and master the problems for this subject.</p>
 
       <div className="experiment-list">
         {experiments.map((exp) => (
