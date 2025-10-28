@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./login.css";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -8,7 +8,7 @@ const Login = () => {
   const [rollNumber, setRollNumber] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [touched, setTouched] = useState(false); // <-- Track first submit
+  const [touched, setTouched] = useState(false); // Track first submit
   const navigate = useNavigate();
 
   const validateForm = (e) => {
@@ -40,8 +40,10 @@ const Login = () => {
     }
 
     setError(""); // Clear errors
-    alert("Successfully logged in. Let's get started");
-    navigate("/dashboard"); // Navigate to verification or dashboard
+    // TODO: Replace alert with actual API login call (e.g., axios.post('/api/login', { rollNumber, password }))
+    // For now, simulate success
+    // alert("Successfully logged in. Let's get started"); // Remove this in production
+    navigate("/dashboard"); // Navigate to dashboard
   };
 
   return (
@@ -66,27 +68,31 @@ const Login = () => {
               value={rollNumber}
               onChange={(e) => {
                 setRollNumber(e.target.value);
-                if (touched) setError(""); // <-- clear error on typing
+                if (touched) setError(""); // Clear error on typing after first submit
               }}
             />
 
             <label>Password</label>
-            <input
-              type={showPassword ? "text" : "password"}
-              placeholder="Enter your password"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-                if (touched) setError(""); // <-- clear error on typing
-              }}
-            />
-
-            <span
-              className="eye-icon"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? "Hide" : "Show"}
-            </span>
+            <div className="password-container"> {/* Wrapper for password input + eye */}
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  if (touched) setError(""); // Clear error on typing after first submit
+                }}
+              />
+              <span
+                className="eye-icon"
+                onClick={() => setShowPassword(!showPassword)}
+                tabIndex={0}
+                role="button"
+                aria-label={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? "Hide" : "Show"}
+              </span>
+            </div>
 
             {/* Error Message */}
             {error && <p className="error">{error}</p>}
@@ -95,7 +101,8 @@ const Login = () => {
               <Link to="/forgot-password">Forgot password?</Link>
             </p>
 
-            <NavLink to="/dashboard" className="signin-btn">Login</NavLink>
+            {/* Use button type="submit" instead of NavLink for form submission */}
+            <button type="submit" className="signin-btn">Login</button>
           </form>
 
           <p className="signup-text">

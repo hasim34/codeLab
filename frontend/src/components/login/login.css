@@ -90,11 +90,13 @@ input {
 
 .eye-icon {
   position: absolute;
-  right: -8px;
-  top: 15%;
+  right: 0px; 
+  top: 35%; 
+  transform: translateY(-50%); 
   cursor: pointer;
+  font-size: 14px; 
+  color: #a3a3a3; 
 }
-
 
 /* Links and button */
 .forgot-link {
