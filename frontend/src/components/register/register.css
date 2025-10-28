@@ -55,7 +55,7 @@ body {
   padding: 40px 0; 
   overflow: visible; 
   flex-direction: column; 
-
+}
 /* Outer Card */
 .register-box {
   flex: 1;
@@ -291,8 +291,28 @@ body {
 }
 
 
+@media (max-width: 900px) {
+  .register-container {
+    flex-direction: column;
+  }
 
+  .register-left,
+  .register-right {
+    flex: none;
+    width: 100%;
+    height: auto;
+  }
 
+  .register-left {
+    padding: 20px;
+  }
 
+  .register-right {
+    padding: 20px 0;
+  }
 
-
+  .register-inner-box {
+    width: 90%;
+    padding: 20px;
+  }
+}

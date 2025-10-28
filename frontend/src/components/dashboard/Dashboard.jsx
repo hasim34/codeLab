@@ -70,9 +70,8 @@ function Dashboard() {
 
   return (
     <div className="dashboard">
+      <div className="admin-addsubbutton">
       <h2>Welcome back, Name! 👋</h2>
-      <p>Continue your coding journey...</p>
-
       {isAdmin && (
         <button
           onClick={() => setShowAddModal(true)}
@@ -88,7 +87,8 @@ function Dashboard() {
         >
           Add Subject
         </button>
-      )}
+      )}</div>
+      <p>Continue your coding journey...</p>
 
       <div className="subjects-grid">
         {subjects.map((sub) => (
