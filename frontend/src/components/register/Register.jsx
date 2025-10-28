@@ -240,7 +240,7 @@ if (!formData.confirmPassword) {
                 {errors.confirmPassword && <p className="error-message">{errors.confirmPassword}</p>}
 
               </div>
-
+{/* 
               <div className="checkbox-row">
                 <input
                   type="checkbox"
@@ -256,7 +256,7 @@ if (!formData.confirmPassword) {
                   </a>
                 </label>
               </div>
-              {errors.agreeToTerms && <p className="error-message">{errors.agreeToTerms}</p>}
+              {errors.agreeToTerms && <p className="error-message">{errors.agreeToTerms}</p>} */}
 
 
               <button type="submit" className="create-account-btn">

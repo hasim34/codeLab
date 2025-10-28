@@ -11,13 +11,13 @@ body {
 .register-container {
   display: flex;
   height: 100vh;
-  overflow: hidden; 
+  width: 100vw;
+  overflow: hidden;
 }
 
 /* Left Panel (Image + Text) */
 .register-left {
   flex: 1;
-  padding: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -27,20 +27,20 @@ body {
 }
 
 .register-left img.register-image {
-  width: 400px;
-  height: auto;
-  border-radius: 20px;
+  width: 300px;
+  height: 200px;
+  border-radius: 12px;
   margin-bottom: 30px;
 }
 
 .register-left h2 {
   margin: 10px 0;
-  font-size: 25px;
+  font-size: 23px;
   font-weight: 600;
 }
 
 .register-left p {
-  font-size: 15px;
+  font-size: 12px;
   color: #dcdcdc;
   max-width: 300px;
   text-align:center ;
@@ -58,7 +58,6 @@ body {
 }
 /* Outer Card */
 .register-box {
-  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -71,30 +70,37 @@ body {
 .logo-img {
   width: 40px;
   height: 40px;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
 }
 
 .register-header h1 {
   margin: 0;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: bold;
+  margin-bottom: 0px;
+}
+
+.register-header h2{
+  margin-bottom: 0px;
 }
 
 .register-header {
-    margin-bottom: 10px;
+    margin-bottom: 0px;
 }
 
 .register-header p {
-  margin-top: 4px;
+  margin-top: 0px;
+  margin-bottom: 0px;
   color: #b0b0b0;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 /* Form Fields */
 .register-form label {
   font-weight: 500;
-  font-size: 14px;
-  margin-bottom: 5px;
+  font-size: 12px;
+  margin-bottom: 4px; /* ADJUSTED: Slight gap below label */
+  margin-top: 3px;
   display: block;
 }
 
@@ -105,7 +111,7 @@ body {
 {
   width: 100%;
   padding: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 6px; /* ADJUSTED: Slight gap below input */
   border-radius: 6px;
   border: 1px solid #3b4a5a;
   background-color: #1a2533;
@@ -122,6 +128,7 @@ body {
 /* Password Field */
 .password-field {
   position: relative;
+  
 }
 
 .password-field input {
@@ -137,29 +144,44 @@ body {
   background: none;
   border: none;
   color: #aaa;
-  font-size: 16px;
+  font-size: 14px;
   cursor: pointer;
 }
 
-/* Checkbox & Terms */
 .checkbox-row {
-  display: flex;
-  align-items: center;
-  
+  width: 100%;
+  margin-top: 0px;
 }
 
-.checkbox-row input {
-  margin-right: 5px;
+.checkbox-label {
+  display: flex;            /* Use flex for proper alignment */
+  align-items: center;      /* Vertically center checkbox and text */
+  font-size: 12px;
+  color: white;
+  gap: 8px;
+  line-height: 1.2;         /* Slightly tighter line height */
+  cursor: pointer;          /* Pointer cursor on hover */
 }
 
-.checkbox-row label {
-  font-size: 14px;
+.checkbox-label input[type="checkbox"] {
+  margin: 0;                /* Reset default margin */
+  width: 16px;              /* Consistent checkbox size */
+  height: 16px;
+  vertical-align: middle;
+  transform: none;          /* Remove scaling to avoid misalignment */
+  accent-color: #4a90e2;    /* Modern checkbox color */
+}
+
+.checkbox-label a {
+  color: #4a90e2;
+  text-decoration: none;
 }
 
 .checkbox-row a {
   color: #4a90e2;
   text-decoration: none;
 }
+
 
 /* Button */
 .create-account-btn {
@@ -181,8 +203,9 @@ body {
 /* Sign-in Link */
 .signin-text {
   text-align: center;
-  font-size: 14px;
-  margin-top: 5px;
+  font-size: 12px;
+  margin-top: 0px;
+  margin-bottom: 0px;
   color: #b0b0b0;
 }
 
@@ -192,45 +215,71 @@ body {
 }
 
 .form-row > div {
-  margin-right: 30px; /* space between fields */
-}
-
-.form-row > div:last-child {
-  margin-right: 10; /* remove space after the last field */
+  margin-right: 11px; /* space between fields */
 }
 
 
 /* Form Card Look */
 .register-inner-box {
   background-color: rgba(255, 255, 255, 0.06); /* Keep translucent look */
-  padding: 2px;
+  padding: 15px 50px; /* Adjust padding */
   border-radius: 16px;
   width: 60%;
-  max-width: 80vh;
+  max-width: 500px;
   box-shadow: 0 4px 40px rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(20px); /* Frosted effect */
   border: 1px solid rgba(255, 255, 255, 0.1);
+  height: auto; /* NEW: Allow natural height initially */
+  max-height: calc(100vh - 110px); /* NEW: Cap at viewport minus paddings/margins for safety */
+  overflow-y: auto; /* NEW: Scroll only on overflow */
+}
+
+/* Custom Scrollbar for WebKit Browsers (Chrome, Safari, Edge) */
+.register-inner-box::-webkit-scrollbar {
+  width: 6px; /* Thin scrollbar */
+}
+
+.register-inner-box::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05); /* Subtle track matching glassmorphism */
+  border-radius: 3px;
+}
+
+.register-inner-box::-webkit-scrollbar-thumb {
+  background: #445267; /* Gray-blue thumb matching input backgrounds */
+  border-radius: 3px;
+}
+
+.register-inner-box::-webkit-scrollbar-thumb:hover {
+  background: #6395ff; /* Blue hover, matching theme accents */
+}
+
+/* For Firefox (if needed, though less customizable) */
+.register-inner-box {
+  scrollbar-width: thin;
+  scrollbar-color: #2563eb rgba(255, 255, 255, 0.05);
 }
 
 /* Form Title & Subtitle */
 .form-title {
-  font-size: 22px;
+  font-size: 14px;
   font-weight: bold;
-  margin-bottom:0px;
+  margin-bottom:6px; /* ADJUSTED: Slight gap below title */
   text-align: left;
 }
 
 .form-subtitle {
-  font-size: 14px;
+  font-size: 10px;
   color: #b0b0b0;
-  margin-bottom: 8px;
+  margin-bottom: 16px; /* ADJUSTED: Slight gap below subtitle */
   text-align: left;
+  margin-top: 3px;
 }
 
 /* Adjust the logo + header */
 .register-header {
   text-align: center;
-  margin-bottom: 5px;
+  margin-bottom: 8px; /* ADJUSTED: Slight gap below header */
+  margin-bottom: 0px;
 }
 
 .logo-img {
@@ -239,14 +288,14 @@ body {
 }
 
 .main-title {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   font-weight: bold;
   color: white;
   margin: 0;
 }
 
 .subheading {
-  font-size: 13px;
+  font-size: 12px;
   color: #b0b0b0;
 }
 
@@ -255,64 +304,38 @@ body {
   align-items: center;
   justify-content: center; /* or use `start` for left alignment */
   gap: 10px; /* space between logo and title */
-  margin-bottom: 4px;
+  margin-bottom: 0px;
 }
 
 
 .register-header {
     text-align: center;
-    margin-bottom: 5px; /* Reduced from 30px */
+    margin-bottom: 0px; 
 }
 
 .register-inner-box {
     margin-top: 0; /* Remove any top margin */
-    padding: 15px 60px; /* Adjust padding */
+    padding: 15px 50px; /* Adjust padding */
     
 }
 
-.register-header h1 {
-    margin-bottom: 0px; /* Reduced spacing */
-}
-
-.register-header p {
-    margin-bottom: 4px; /* Remove bottom margin */
-}
 
 .form-title {
     margin-top: 0; 
     padding-top: 0; 
+    margin-bottom: 0px;
 }
 
 .error-message {
   color: red;
-  font-size: 0.80rem;
+  font-size: 0.75rem;
   margin-top: 0px;
   margin-bottom: 0px;
 }
 
-
-@media (max-width: 900px) {
-  .register-container {
-    flex-direction: column;
-  }
-
-  .register-left,
-  .register-right {
-    flex: none;
-    width: 100%;
-    height: auto;
-  }
-
-  .register-left {
-    padding: 20px;
-  }
-
-  .register-right {
-    padding: 20px 0;
-  }
-
-  .register-inner-box {
-    width: 90%;
-    padding: 20px;
-  }
+.error-message {
+  color: #ff4757;
+  font-size: 13px;
+  margin-top: 0px;
+  min-height: 20px;
 }
