@@ -8,10 +8,10 @@ const Login = () => {
   const [rollNumber, setRollNumber] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [touched, setTouched] = useState(false); // Track first submit
+  const [touched, setTouched] = useState(false);
   const navigate = useNavigate();
 
-  const validateForm = (e) => {
+  const validateForm = async (e) => {
     e.preventDefault();
     setTouched(true);
 
@@ -40,10 +40,16 @@ const Login = () => {
     }
 
     setError(""); // Clear errors
-    // TODO: Replace alert with actual API login call (e.g., axios.post('/api/login', { rollNumber, password }))
-    // For now, simulate success
-    // alert("Successfully logged in. Let's get started"); // Remove this in production
-    navigate("/dashboard"); // Navigate to dashboard
+    try {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, {
+        roll_number: rollNumber,
+        password
+      });
+      localStorage.setItem("token", res.data.token);
+      navigate("/dashboard");
+    } catch (err) {
+      setError(err.response?.data?.message || "Login failed");
+    }
   };
 
   return (
@@ -106,7 +112,7 @@ const Login = () => {
           </form>
 
           <p className="signup-text">
-            Don’t have an account? <NavLink to="/register" className="register-link-button">Create one here</NavLink>
+            Don't have an account? <NavLink to="/register" className="register-link-button">Create one here</NavLink>
           </p>
         </div>
       </div>

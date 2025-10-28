@@ -74,7 +74,7 @@ label {
 }
 
 input {
-  width: 100%;
+  width: 94%;
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #4b4c4d;
@@ -90,7 +90,7 @@ input {
 
 .eye-icon {
   position: absolute;
-  right: 0px; 
+  right: 8px; 
   top: 35%; 
   transform: translateY(-50%); 
   cursor: pointer;

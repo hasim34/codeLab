@@ -2,7 +2,7 @@ import "./experiments.css";
 import { useParams, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-// import jwtDecode from "jwt-decode";
+import {jwtDecode} from "jwt-decode";
 import ProblemModal from "./ProblemModal.jsx";
 
 function Experiments() {
@@ -15,18 +15,20 @@ function Experiments() {
   const [editingProblem, setEditingProblem] = useState(null); // {id, title, level, description, examples, signature, samples, hidden}
 
   useEffect(() => {
-    // const token = localStorage.getItem("token");
-    // if (token) {
-    //   const decoded = jwtDecode(token);
-    //   setIsAdmin(decoded.isAdmin || false);
-    // }
-    setIsAdmin(true);
+    const token = localStorage.getItem("token");
+    if (token) {
+      const decoded = jwtDecode(token);
+      setIsAdmin(decoded.role === "admin");
+    }
     fetchExperiments();
   }, [id]);
 
   const fetchExperiments = async () => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/problems/${id}`, { withCredentials: true });
+      const token = localStorage.getItem("token");
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/problems/${id}`, { 
+        headers: { Authorization: `Bearer ${token}` } 
+      });
       setExperiments(res.data);
     } catch (err) {
       console.error("Error fetching experiments:", err);
@@ -44,7 +46,10 @@ function Experiments() {
   const handleEdit = async (problemId) => {
     try {
       // Fetch detailed data
-      const detailRes = await axios.get(`${import.meta.env.VITE_API_URL}/problems/subject/${id}/problem/${problemId}`, { withCredentials: true });
+      const token = localStorage.getItem("token");
+      const detailRes = await axios.get(`${import.meta.env.VITE_API_URL}/problems/subject/${id}/problem/${problemId}`, { 
+        headers: { Authorization: `Bearer ${token}` } 
+      });
       const { description, examples, signature, samples, hidden } = detailRes.data;
       const exp = experiments.find(e => e.id === problemId);
       setEditingProblem({ id: problemId, title: exp.title, level: exp.level, description, examples, signature, samples, hidden });
@@ -57,7 +62,10 @@ function Experiments() {
   const handleDelete = async (problemId) => {
     if (window.confirm("Are you sure you want to delete this experiment?")) {
       try {
-        await axios.delete(`${import.meta.env.VITE_API_URL}/problems/${id}/${problemId}`, { withCredentials: true });
+        const token = localStorage.getItem("token");
+        await axios.delete(`${import.meta.env.VITE_API_URL}/problems/${id}/${problemId}`, { 
+          headers: { Authorization: `Bearer ${token}` } 
+        });
         fetchExperiments();
       } catch (err) {
         console.error("Error deleting experiment:", err);
@@ -67,6 +75,7 @@ function Experiments() {
 
   const handleSave = async (data) => {
     try {
+      const token = localStorage.getItem("token");
       const payload = {
         title: data.title,
         level: data.difficulty,
@@ -78,10 +87,14 @@ function Experiments() {
       };
       if (editingProblem) {
         // Edit
-        await axios.put(`${import.meta.env.VITE_API_URL}/problems/${id}/${editingProblem.id}`, payload, { withCredentials: true });
+        await axios.put(`${import.meta.env.VITE_API_URL}/problems/${id}/${editingProblem.id}`, payload, { 
+          headers: { Authorization: `Bearer ${token}` } 
+        });
       } else {
         // Add
-        await axios.post(`${import.meta.env.VITE_API_URL}/problems/${id}`, payload, { withCredentials: true });
+        await axios.post(`${import.meta.env.VITE_API_URL}/problems/${id}`, payload, { 
+          headers: { Authorization: `Bearer ${token}` } 
+        });
       }
       fetchExperiments();
       setShowModal(false);

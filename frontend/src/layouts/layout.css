@@ -130,3 +130,39 @@ body {
   overflow-y: auto; /* Scroll only this area vertically */
   overflow-x: hidden; /* Prevent horizontal scroll */
 }
+
+.topbar-avatar-container {
+  position: relative;
+  cursor: pointer;
+}
+
+.profile-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #1e293b;
+  border-radius: 5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  min-width: 120px;
+  padding: 5px 0;
+  border: 1px solid #334155;
+}
+
+.dropdown-logout-btn {
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  background: none;
+  border: none;
+  color: #d1d5db;
+  text-align: left;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.dropdown-logout-btn:hover {
+  background: #334155;
+  color: #fff;
+}
