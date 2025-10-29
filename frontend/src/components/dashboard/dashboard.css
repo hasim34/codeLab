@@ -16,3 +16,30 @@
   align-items: center;
   margin-bottom: 1rem;
 }
+
+.add-subject-btn {
+  background: linear-gradient(135deg, #2563eb, #1e40af); /* deep blue gradient */
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.4rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+  transition: all 0.25s ease-in-out;
+  letter-spacing: 0.5px;
+}
+
+/* Hover effect */
+.add-subject-btn:hover {
+  background: linear-gradient(135deg, #1d4ed8, #1e3a8a);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.4);
+}
+
+/* Click/active press effect */
+.add-subject-btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3);
+}

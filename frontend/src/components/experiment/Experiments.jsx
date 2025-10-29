@@ -1,5 +1,5 @@
 import "./experiments.css";
-import { useParams, NavLink } from "react-router-dom";
+import { useParams, NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import {jwtDecode} from "jwt-decode";
@@ -15,13 +15,21 @@ function Experiments() {
   const [editingProblem, setEditingProblem] = useState(null); // {id, title, level, description, examples, signature, samples, hidden}
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      const decoded = jwtDecode(token);
-      setIsAdmin(decoded.role === "admin");
-    }
-    fetchExperiments();
-  }, [id]);
+  const token = localStorage.getItem("token");
+  if (!token) {
+    navigate("/"); 
+    return;
+  }
+  try {
+    const decoded = jwtDecode(token);
+    setIsAdmin(decoded.role === "admin"); 
+  } catch (err) {
+    console.error("Invalid token:", err);
+    localStorage.removeItem("token"); 
+    navigate("/"); 
+  }
+  fetchExperiments(); 
+}, [id, navigate]); 
 
   const fetchExperiments = async () => {
     try {

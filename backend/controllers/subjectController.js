@@ -1,19 +1,22 @@
 const path = require("path");
 const fs = require("fs").promises;
+const db = require("../config/db");
 
-const subjectsFilePath = path.join(__dirname,"../json/subjects.json");
+const subjectsFilePath = path.join(__dirname, "../json/subjects.json");
+
 const getAllSubjects = async (req, res) => {
-    try{
-        const data = await fs.readFile(subjectsFilePath, "utf-8");
+  try {
+    // const userId = req.user.user_id;  
+    // const [user] = await db.query("SELECT name FROM users WHERE id = ?", [userId]);
+    // const userName = user?.name || "User";
 
-        const subjects = JSON.parse(data);
+    const data = await fs.readFile(subjectsFilePath, "utf-8");
+    const subjects = JSON.parse(data);
 
-        res.status(200).json(subjects);
-    } catch (err){
-        console.log(err);
-        
-        res.status(500).json( {message : "Failed to fetch subjects", error : err});
-    }
+    res.status(200).json({subjects});
+  } catch (err) {
+    res.status(500).json({ message: "Failed to fetch subjects", error: err });
+  }
 };
 
 const addSubject = async (req, res) => {

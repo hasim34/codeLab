@@ -53,7 +53,7 @@ function AddSubjectModal({ onClose, onSave, initialData = { title: "", code: "",
             <input
               className="input-sub"
               type="text"
-              placeholder="e.g., CS201"
+              placeholder="e.g., 22CSC11"
               value={subjectCode}
               onChange={(e) => setSubjectCode(e.target.value)}
             />
