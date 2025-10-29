@@ -103,7 +103,7 @@ const Register = () => {
         password: formData.password,
       });
       setSuccessMessage(res.data.message);
-      setTimeout(() => navigate("/login"), 2000);
+      setTimeout(() => navigate("/"), 2000);
     } catch (err) {
       setErrors({ apiError: err.response?.data?.message || "Registration failed" });
     }

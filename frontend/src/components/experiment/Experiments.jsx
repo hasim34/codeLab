@@ -13,6 +13,7 @@ function Experiments() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [editingProblem, setEditingProblem] = useState(null); // {id, title, level, description, examples, signature, samples, hidden}
+  const navigate = useNavigate();
 
   useEffect(() => {
   const token = localStorage.getItem("token");

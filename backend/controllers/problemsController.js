@@ -12,9 +12,9 @@ const getProblemsBySubject = async (req, res) => {
 
     const subjectProblems = problems.filter((p) => p.subjectId === subjectId);
 
-    if (subjectProblems.length === 0) {
-      return res.status(404).json({ message: "No problems found for this subject" });
-    }
+    // if (subjectProblems.length === 0) {
+    //   return res.status(404).json({ message: "No problems found for this subject" });
+    // }
 
     res.status(200).json(subjectProblems);
   } catch (err) {

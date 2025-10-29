@@ -40,5 +40,12 @@
     "title": "Longest Substring Without Repeating Characters",
     "level": "Medium",
     "progress": 0
+  },
+  {
+    "id": 7,
+    "subjectId": 4,
+    "title": "Two Sum problem",
+    "level": "Easy",
+    "progress": 0
   }
 ]
