@@ -26,7 +26,7 @@ const getProblemDetails = (req, res) => {
         res.json(response);
     }catch(err){
         console.log('Error getting problem details: ',err);
-        return res.status(5000).json({error: err});
+        return res.status(500).json({error: err});
     }
 }
 
